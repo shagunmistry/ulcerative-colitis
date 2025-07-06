@@ -1,103 +1,227 @@
-import Image from "next/image";
+'use client';
+
+import { motion } from 'motion/react';
+import Link from 'next/link';
+import { FeatureCard } from '@/lib/types';
+
+const features: FeatureCard[] = [
+  {
+    title: 'Learn About UC',
+    description: 'Comprehensive information about Ulcerative Colitis, symptoms, causes, and treatment options.',
+    icon: '📚',
+    href: '/learn',
+    color: 'primary'
+  },
+  {
+    title: 'Track Your Symptoms',
+    description: 'Anonymous symptom tracker to monitor your condition and identify patterns.',
+    icon: '📊',
+    href: '/tools/symptom-tracker',
+    color: 'secondary'
+  },
+  {
+    title: 'Diet & Nutrition',
+    description: 'UC-friendly foods guide and dietary recommendations for better management.',
+    icon: '🥗',
+    href: '/tools/diet-guide',
+    color: 'accent'
+  },
+  {
+    title: 'Research & Resources',
+    description: 'Latest research, medical studies, and educational resources about UC.',
+    icon: '🔬',
+    href: '/resources',
+    color: 'primary'
+  },
+  {
+    title: 'Community Stories',
+    description: 'Patient experiences, success stories, and tips from the UC community.',
+    icon: '👥',
+    href: '/community',
+    color: 'secondary'
+  },
+  {
+    title: 'Exercise & Wellness',
+    description: 'Safe exercise recommendations and stress management techniques.',
+    icon: '🏃‍♂️',
+    href: '/tools/exercise',
+    color: 'accent'
+  }
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen" itemScope itemType="https://schema.org/WebPage">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-neutral-50 via-white to-neutral-50 py-20 sm:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight"
+              itemProp="name"
+            >
+              Your Comprehensive Guide to{' '}
+              <span className="text-primary">Ulcerative Colitis</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-lg md:text-xl text-neutral-500 mb-8 max-w-2xl mx-auto leading-relaxed"
+              itemProp="description"
+            >
+              Access evidence-based information, practical tools, and supportive resources - all in one place. 
+              Take control of your UC journey with confidence.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Link 
+                href="/learn" 
+                className="btn-primary text-center px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Start Learning
+              </Link>
+              <Link 
+                href="/tools/symptom-tracker" 
+                className="btn-secondary text-center px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Track Symptoms
+              </Link>
+            </motion.div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+            >
+              Everything You Need to Manage UC
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg text-neutral-500 max-w-2xl mx-auto"
+            >
+              Comprehensive resources and tools designed to help you understand and manage your condition effectively.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                <Link href={feature.href} className="block">
+                  <div className="card p-6 h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <div className="text-4xl mb-4">{feature.icon}</div>
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
+                      {feature.title}
+                    </h3>
+                    <p className="text-neutral-500 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Access Section */}
+      <section className="py-20 bg-gradient-to-r from-primary/5 to-secondary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+            >
+              Quick Access
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg text-neutral-500"
+            >
+              Get instant access to our most popular resources
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="card p-8 text-center"
+            >
+              <h3 className="text-2xl font-semibold text-foreground mb-4">Emergency Resources</h3>
+              <p className="text-neutral-500 mb-6">
+                Quick access to emergency contacts and flare management protocols
+              </p>
+              <Link 
+                href="/resources/emergency" 
+                className="btn-primary px-6 py-3 rounded-lg font-semibold"
+              >
+                Get Help Now
+              </Link>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="card p-8 text-center"
+            >
+              <h3 className="text-2xl font-semibold text-foreground mb-4">Latest Updates</h3>
+              <p className="text-neutral-500 mb-6">
+                Stay informed with the latest UC research and treatment advances
+              </p>
+              <Link 
+                href="/resources/research" 
+                className="btn-secondary px-6 py-3 rounded-lg font-semibold"
+              >
+                View Research
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Medical Disclaimer */}
+      <section className="py-8 bg-neutral-50 border-t border-neutral-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-sm text-neutral-500">
+              <strong>Medical Disclaimer:</strong> This website is for educational purposes only and is not a substitute for professional medical advice. 
+              Always consult with your healthcare provider before making any decisions about your treatment.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
