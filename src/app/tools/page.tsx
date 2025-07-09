@@ -1,7 +1,22 @@
-'use client';
-
+import { Metadata } from 'next';
 import { motion } from 'motion/react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "UC Management Tools - Track Symptoms & Manage Your Health",
+  description: "Practical tools to help manage ulcerative colitis. Track symptoms, monitor diet, plan exercise, manage stress, and create flare action plans. All tools are private and secure.",
+  keywords: ["UC tools", "symptom tracker", "UC diet guide", "UC exercise", "UC stress management", "UC medication tracker", "UC flare plan", "UC management"],
+  openGraph: {
+    title: "UC Management Tools - Track Symptoms & Manage Your Health - UC Guide",
+    description: "Practical tools to help manage ulcerative colitis. Track symptoms, monitor diet, plan exercise, manage stress, and create flare action plans.",
+  },
+  twitter: {
+    title: "UC Management Tools - Track Symptoms & Manage Your Health - UC Guide",
+    description: "Practical tools to help manage ulcerative colitis. Track symptoms, monitor diet, plan exercise, manage stress, and create flare action plans.",
+  },
+};
+
+'use client';
 
 const tools = [
   {

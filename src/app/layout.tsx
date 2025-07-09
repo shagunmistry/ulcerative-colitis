@@ -1,102 +1,81 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { Header } from "@/components/navigation/Header";
-import { Footer } from "@/components/navigation/Footer";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { Header } from '@/components/navigation/Header';
+import { Footer } from '@/components/navigation/Footer';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "UC Guide - Your Comprehensive Ulcerative Colitis Resource",
-  description: "Your comprehensive guide to understanding and managing Ulcerative Colitis. Access evidence-based information, practical tools, and supportive resources - all in one place.",
-  keywords: ["ulcerative colitis", "UC", "IBD", "inflammatory bowel disease", "treatment", "symptoms", "diet", "health", "colitis management", "UC symptoms", "UC diet", "UC treatment"],
-  authors: [{ name: "UC Guide Team" }],
-  viewport: "width=device-width, initial-scale=1",
-  robots: "index, follow",
+  title: {
+    template: '%s - UC Guide',
+    default: 'UC Guide - Comprehensive Ulcerative Colitis Resource',
+  },
+  description: 'Your comprehensive guide to ulcerative colitis. Access evidence-based information, practical tools, and supportive resources for managing UC.',
+  keywords: ['ulcerative colitis', 'UC', 'inflammatory bowel disease', 'IBD', 'colitis management', 'UC symptoms', 'UC treatment', 'UC diet', 'UC resources'],
+  authors: [{ name: 'UC Guide Team' }],
+  creator: 'UC Guide',
+  publisher: 'UC Guide',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://ucguide.com'),
   alternates: {
-    canonical: "https://ucguide.com",
+    canonical: '/',
   },
   openGraph: {
-    title: "UC Guide - Your Comprehensive Ulcerative Colitis Resource",
-    description: "Your comprehensive guide to understanding and managing Ulcerative Colitis. Access evidence-based information, practical tools, and supportive resources - all in one place.",
-    type: "website",
-    locale: "en_US",
-    url: "https://ucguide.com",
-    siteName: "UC Guide",
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://ucguide.com',
+    siteName: 'UC Guide',
+    title: 'UC Guide - Comprehensive Ulcerative Colitis Resource',
+    description: 'Your comprehensive guide to ulcerative colitis. Access evidence-based information, practical tools, and supportive resources for managing UC.',
     images: [
       {
-        url: "/og-image.jpg",
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: "UC Guide - Comprehensive Ulcerative Colitis Resource",
+        alt: 'UC Guide - Comprehensive Ulcerative Colitis Resource',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "UC Guide - Your Comprehensive Ulcerative Colitis Resource",
-    description: "Your comprehensive guide to understanding and managing Ulcerative Colitis. Access evidence-based information, practical tools, and supportive resources - all in one place.",
-    images: ["/og-image.jpg"],
+    card: 'summary_large_image',
+    title: 'UC Guide - Comprehensive Ulcerative Colitis Resource',
+    description: 'Your comprehensive guide to ulcerative colitis. Access evidence-based information, practical tools, and supportive resources for managing UC.',
+    images: ['/og-image.jpg'],
+    creator: '@ucguide',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-site-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "UC Guide",
-              description: "Your comprehensive guide to understanding and managing Ulcerative Colitis. Access evidence-based information, practical tools, and supportive resources - all in one place.",
-              url: "https://ucguide.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://ucguide.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              },
-              publisher: {
-                "@type": "Organization",
-                name: "UC Guide Team",
-                url: "https://ucguide.com"
-              },
-              mainEntity: {
-                "@type": "MedicalCondition",
-                name: "Ulcerative Colitis",
-                alternateName: ["UC", "IBD", "Inflammatory Bowel Disease"],
-                description: "A chronic inflammatory bowel disease that causes inflammation and ulcers in the digestive tract",
-                medicalCode: {
-                  "@type": "MedicalCode",
-                  code: "K51",
-                  codingSystem: "ICD-10"
-                }
-              }
-            })
-          }}
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={inter.className}>
         <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

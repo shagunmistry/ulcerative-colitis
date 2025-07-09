@@ -1,10 +1,25 @@
-'use client';
-
+import { Metadata } from 'next';
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { SymptomEntry } from '@/lib/types';
 import { generateId, formatDate } from '@/lib/utils';
+
+export const metadata: Metadata = {
+  title: "UC Symptom Tracker - Monitor Your Ulcerative Colitis",
+  description: "Track your UC symptoms, identify patterns, and share insights with your healthcare provider. Anonymous, secure symptom tracking with data export. Monitor triggers, severity, and trends over time.",
+  keywords: ["UC symptom tracker", "ulcerative colitis symptoms", "IBD tracking", "UC diary", "symptom monitoring", "UC patterns", "UC triggers", "UC severity"],
+  openGraph: {
+    title: "UC Symptom Tracker - Monitor Your Ulcerative Colitis - UC Guide",
+    description: "Track your UC symptoms, identify patterns, and share insights with your healthcare provider. Anonymous, secure symptom tracking with data export.",
+  },
+  twitter: {
+    title: "UC Symptom Tracker - Monitor Your Ulcerative Colitis - UC Guide",
+    description: "Track your UC symptoms, identify patterns, and share insights with your healthcare provider. Anonymous, secure symptom tracking with data export.",
+  },
+};
+
+'use client';
 
 const symptoms = [
   'Diarrhea',

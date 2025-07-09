@@ -33,7 +33,7 @@ const navigation: NavItem[] = [
       { name: 'FAQ', href: '/resources/faq' },
     ]
   },
-  { name: 'Community', href: '/community' },
+  // { name: 'Community', href: '/community' },
 ];
 
 export function Header() {
