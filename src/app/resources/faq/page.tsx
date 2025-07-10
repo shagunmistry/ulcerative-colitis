@@ -184,7 +184,7 @@ export default function FAQPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Still Have Questions?</h2>
           <div className="space-y-4">
             <p className="text-gray-600">
-              If you can't find the answer to your question here, consider these resources:
+              If you can&apos;t find the answer to your question here, consider these resources:
             </p>
             <ul className="space-y-2 text-gray-600">
               <li className="flex items-start">
@@ -193,7 +193,7 @@ export default function FAQPage() {
               </li>
               <li className="flex items-start">
                 <span className="text-blue-500 mr-2">•</span>
-                <span><strong>Crohn's & Colitis Foundation:</strong> Comprehensive patient education resources</span>
+                <span><strong>Crohn&apos;s & Colitis Foundation:</strong> Comprehensive patient education resources</span>
               </li>
               <li className="flex items-start">
                 <span className="text-blue-500 mr-2">•</span>
@@ -210,7 +210,7 @@ export default function FAQPage() {
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
           <h3 className="text-lg font-semibold text-yellow-800 mb-2">Emergency Situations</h3>
           <p className="text-yellow-700">
-            If you're experiencing severe symptoms such as intense abdominal pain, high fever, severe bleeding, or signs of dehydration, seek immediate medical attention. Don't wait to contact your healthcare provider.
+            If you&apos;re experiencing severe symptoms such as intense abdominal pain, high fever, severe bleeding, or signs of dehydration, seek immediate medical attention. Don&apos;t wait to contact your healthcare provider.
           </p>
         </div>
       </div>

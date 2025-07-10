@@ -85,7 +85,7 @@ export default function ResearchPage() {
                   </a>
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 mb-2">Crohn's & Colitis Foundation</h3>
+                  <h3 className="font-semibold text-gray-900 mb-2">Crohn&apos;s & Colitis Foundation</h3>
                   <p className="text-gray-600 text-sm mb-2">
                     Clinical trial matching and resources
                   </p>
@@ -201,7 +201,7 @@ export default function ResearchPage() {
               </li>
               <li className="flex items-start">
                 <span className="text-blue-500 mr-2">•</span>
-                What happens if the treatment doesn't work or causes side effects?
+                What happens if the treatment doesn&apos;t work or causes side effects?
               </li>
             </ul>
           </div>

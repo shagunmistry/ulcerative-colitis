@@ -1,23 +1,8 @@
 'use client';
 
-import { Metadata } from 'next';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useState } from 'react';
-
-export const metadata: Metadata = {
-  title: "UC Treatment Options - Medications & Therapies",
-  description: "Comprehensive guide to ulcerative colitis treatment options including medications, biologics, surgery, and lifestyle therapies. Learn about aminosalicylates, corticosteroids, immunosuppressants, and more.",
-  keywords: ["UC treatment", "ulcerative colitis medications", "UC biologics", "UC surgery", "mesalamine", "prednisone", "infliximab", "adalimumab", "UC therapy"],
-  openGraph: {
-    title: "UC Treatment Options - Medications & Therapies - UC Guide",
-    description: "Comprehensive guide to ulcerative colitis treatment options including medications, biologics, surgery, and lifestyle therapies.",
-  },
-  twitter: {
-    title: "UC Treatment Options - Medications & Therapies - UC Guide",
-    description: "Comprehensive guide to ulcerative colitis treatment options including medications, biologics, surgery, and lifestyle therapies.",
-  },
-};
 
 const treatments = [
   {

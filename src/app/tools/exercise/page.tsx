@@ -1,22 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import { motion } from 'motion/react';
 import { useState } from 'react';
-
-export const metadata: Metadata = {
-  title: "UC Exercise Guide - Safe Workouts for Ulcerative Colitis",
-  description: "Safe exercise recommendations and fitness plans for people with ulcerative colitis. Learn about low-impact exercises, workout plans by UC status, and safety tips for staying active.",
-  keywords: ["UC exercise", "ulcerative colitis exercise", "IBD fitness", "UC workout", "UC physical activity", "UC exercise safety", "low impact exercise", "UC fitness plan"],
-  openGraph: {
-    title: "UC Exercise Guide - Safe Workouts for Ulcerative Colitis - UC Guide",
-    description: "Safe exercise recommendations and fitness plans for people with ulcerative colitis. Learn about low-impact exercises, workout plans by UC status, and safety tips.",
-  },
-  twitter: {
-    title: "UC Exercise Guide - Safe Workouts for Ulcerative Colitis - UC Guide",
-    description: "Safe exercise recommendations and fitness plans for people with ulcerative colitis. Learn about low-impact exercises, workout plans by UC status, and safety tips.",
-  },
-};
-
-'use client';
 
 const exerciseCategories = [
   {

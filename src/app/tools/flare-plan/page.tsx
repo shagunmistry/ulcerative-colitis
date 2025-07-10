@@ -1,22 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import { motion } from 'motion/react';
 import { useState } from 'react';
-
-export const metadata: Metadata = {
-  title: "UC Flare Action Plan - Emergency Plan for UC Flares",
-  description: "Create a personalized action plan for managing UC flares. Learn warning signs, action steps, medication protocols, and emergency contacts for effective flare management.",
-  keywords: ["UC flare plan", "ulcerative colitis flare", "UC emergency plan", "UC flare management", "UC warning signs", "UC action plan", "UC flare protocol", "UC emergency"],
-  openGraph: {
-    title: "UC Flare Action Plan - Emergency Plan for UC Flares - UC Guide",
-    description: "Create a personalized action plan for managing UC flares. Learn warning signs, action steps, medication protocols, and emergency contacts.",
-  },
-  twitter: {
-    title: "UC Flare Action Plan - Emergency Plan for UC Flares - UC Guide",
-    description: "Create a personalized action plan for managing UC flares. Learn warning signs, action steps, medication protocols, and emergency contacts.",
-  },
-};
-
-'use client';
 
 const warningSignsData = [
   {
@@ -204,7 +189,6 @@ const planningTips = [
 
 export default function FlarePlanPage() {
   const [activeTab, setActiveTab] = useState('warning');
-  const [selectedCategory, setSelectedCategory] = useState(0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-white">
@@ -368,7 +352,7 @@ export default function FlarePlanPage() {
                   Medication Protocol
                 </h2>
                 <p className="text-lg text-neutral-500 max-w-2xl mx-auto">
-                  Your personalized medication plan for managing flares. Always follow your doctor's specific instructions.
+                  Your personalized medication plan for managing flares. Always follow your doctor&apos;s specific instructions.
                 </p>
               </div>
 
@@ -581,7 +565,7 @@ export default function FlarePlanPage() {
                 <h3 className="font-semibold text-blue-800 mb-2">Medical Disclaimer</h3>
                 <p className="text-blue-700 text-sm">
                   This flare action plan is a general template and should be customized with your healthcare provider. 
-                  Always follow your doctor's specific instructions and seek immediate medical attention for severe symptoms. 
+                  Always follow your doctor&apos;s specific instructions and seek immediate medical attention for severe symptoms. 
                   This information is not intended to replace professional medical advice.
                 </p>
               </div>

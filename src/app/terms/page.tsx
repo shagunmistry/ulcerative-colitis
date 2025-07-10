@@ -22,7 +22,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
             <div className="space-y-4 text-gray-600">
               <p>
-                By accessing and using UC Guide ("we," "us," or "our"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                By accessing and using UC Guide (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </div>
           </section>
@@ -144,7 +144,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Disclaimers and Limitations</h2>
             <div className="space-y-4 text-gray-600">
               <p>
-                UC Guide is provided "as is" without any warranties, express or implied. We do not guarantee that:
+                UC Guide is provided &quot;as is&quot; without any warranties, express or implied. We do not guarantee that:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>The service will be uninterrupted or error-free</li>
@@ -192,7 +192,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Changes to Terms</h2>
             <div className="space-y-4 text-gray-600">
               <p>
-                We reserve the right to modify these terms at any time. Changes will be posted on this page with an updated "Last updated" date. Your continued use of the service after changes are posted constitutes acceptance of the new terms.
+                We reserve the right to modify these terms at any time. Changes will be posted on this page with an updated &quot;Last updated&quot; date. Your continued use of the service after changes are posted constitutes acceptance of the new terms.
               </p>
             </div>
           </section>

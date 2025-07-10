@@ -1,22 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import { motion } from 'motion/react';
 import { useState } from 'react';
-
-export const metadata: Metadata = {
-  title: "UC Medication Tracker - Track Your UC Medications",
-  description: "Keep track of your UC medications, dosages, side effects, and refill schedules. Learn about common UC medications including mesalamine, prednisone, biologics, and immunosuppressants.",
-  keywords: ["UC medication tracker", "ulcerative colitis medications", "UC drug tracking", "mesalamine", "prednisone", "biologics", "UC side effects", "medication adherence"],
-  openGraph: {
-    title: "UC Medication Tracker - Track Your UC Medications - UC Guide",
-    description: "Keep track of your UC medications, dosages, side effects, and refill schedules. Learn about common UC medications and their side effects.",
-  },
-  twitter: {
-    title: "UC Medication Tracker - Track Your UC Medications - UC Guide",
-    description: "Keep track of your UC medications, dosages, side effects, and refill schedules. Learn about common UC medications and their side effects.",
-  },
-};
-
-'use client';
 
 const commonMedications = [
   {
@@ -470,7 +455,7 @@ export default function MedicationTrackerPage() {
               Your Data is Private
             </h2>
             <p className="text-lg text-neutral-500 max-w-2xl mx-auto">
-              All medication tracking data is stored locally on your device. We don't collect, store, or share any personal health information.
+              All medication tracking data is stored locally on your device. We don&apos;t collect, store, or share any personal health information.
             </p>
           </motion.div>
         </div>

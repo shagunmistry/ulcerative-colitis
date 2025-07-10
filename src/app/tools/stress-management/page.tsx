@@ -1,22 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import { motion } from 'motion/react';
 import { useState } from 'react';
-
-export const metadata: Metadata = {
-  title: "UC Stress Management - Reduce Stress for Better Health",
-  description: "Learn stress reduction techniques and mindfulness practices to help manage UC symptoms. Discover breathing exercises, meditation, progressive relaxation, and stress tracking tools.",
-  keywords: ["UC stress management", "stress and ulcerative colitis", "UC mindfulness", "stress reduction", "UC meditation", "breathing exercises", "UC anxiety", "stress tracking"],
-  openGraph: {
-    title: "UC Stress Management - Reduce Stress for Better Health - UC Guide",
-    description: "Learn stress reduction techniques and mindfulness practices to help manage UC symptoms. Discover breathing exercises, meditation, and stress tracking tools.",
-  },
-  twitter: {
-    title: "UC Stress Management - Reduce Stress for Better Health - UC Guide",
-    description: "Learn stress reduction techniques and mindfulness practices to help manage UC symptoms. Discover breathing exercises, meditation, and stress tracking tools.",
-  },
-};
-
-'use client';
 
 const techniques = [
   {

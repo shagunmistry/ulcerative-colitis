@@ -1,22 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import { motion } from 'motion/react';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: "UC Resources - Research, Support & Educational Materials",
-  description: "Comprehensive UC resources including latest research, clinical trials, support groups, educational materials, and emergency resources. Find trusted organizations and helpful tools.",
-  keywords: ["UC resources", "ulcerative colitis research", "UC support groups", "UC organizations", "UC clinical trials", "UC apps", "IBD resources", "UC education"],
-  openGraph: {
-    title: "UC Resources - Research, Support & Educational Materials - UC Guide",
-    description: "Comprehensive UC resources including latest research, clinical trials, support groups, educational materials, and emergency resources.",
-  },
-  twitter: {
-    title: "UC Resources - Research, Support & Educational Materials - UC Guide",
-    description: "Comprehensive UC resources including latest research, clinical trials, support groups, educational materials, and emergency resources.",
-  },
-};
-
-'use client';
 
 const resourceCategories = [
   {
@@ -411,7 +396,7 @@ export default function ResourcesPage() {
               Additional Support
             </h2>
             <p className="text-lg text-neutral-500">
-              Remember that managing UC is a journey, and you don't have to do it alone
+              Remember that managing UC is a journey, and you don&apos;t have to do it alone
             </p>
           </motion.div>
 

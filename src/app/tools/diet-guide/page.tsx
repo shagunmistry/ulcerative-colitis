@@ -1,22 +1,7 @@
-import { Metadata } from 'next';
+'use client';
+
 import { motion } from 'motion/react';
 import { useState } from 'react';
-
-export const metadata: Metadata = {
-  title: "UC Diet Guide - Foods to Eat & Avoid with Ulcerative Colitis",
-  description: "Comprehensive UC diet guide with safe foods, trigger foods to avoid, and meal plans for flares and remission. Get personalized dietary recommendations for better UC management.",
-  keywords: ["UC diet", "ulcerative colitis diet", "UC foods", "UC trigger foods", "UC meal plan", "UC nutrition", "colitis diet", "IBD diet", "UC safe foods"],
-  openGraph: {
-    title: "UC Diet Guide - Foods to Eat & Avoid with Ulcerative Colitis - UC Guide",
-    description: "Comprehensive UC diet guide with safe foods, trigger foods to avoid, and meal plans for flares and remission. Get personalized dietary recommendations.",
-  },
-  twitter: {
-    title: "UC Diet Guide - Foods to Eat & Avoid with Ulcerative Colitis - UC Guide",
-    description: "Comprehensive UC diet guide with safe foods, trigger foods to avoid, and meal plans for flares and remission. Get personalized dietary recommendations.",
-  },
-};
-
-'use client';
 
 const triggerFoods = [
   {
