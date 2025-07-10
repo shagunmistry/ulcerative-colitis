@@ -204,8 +204,8 @@ export default function TermsPage() {
                 If you have any questions about these Terms of Service, please contact us at:
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
-                <p><strong>Email:</strong> legal@ucguide.com</p>
-                <p><strong>Website:</strong> https://ucguide.com</p>
+                <p><strong>Email:</strong> legal@ulcerative-colitis.vercel.app</p>
+                <p><strong>Website:</strong> https://ulcerative-colitis.vercel.app</p>
               </div>
             </div>
           </section>

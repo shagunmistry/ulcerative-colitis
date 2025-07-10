@@ -33,13 +33,13 @@ const features: FeatureCard[] = [
     href: '/resources',
     color: 'primary'
   },
-  {
-    title: 'Community Stories',
-    description: 'Patient experiences, success stories, and tips from the UC community.',
-    icon: '👥',
-    href: '/community',
-    color: 'secondary'
-  },
+  // {
+  //   title: 'Community Stories',
+  //   description: 'Patient experiences, success stories, and tips from the UC community.',
+  //   icon: '👥',
+  //   href: '/community',
+  //   color: 'secondary'
+  // },
   {
     title: 'Exercise & Wellness',
     description: 'Safe exercise recommendations and stress management techniques.',

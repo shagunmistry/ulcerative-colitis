@@ -168,8 +168,8 @@ export default function PrivacyPage() {
                 If you have any questions about this privacy policy or our privacy practices, please contact us at:
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
-                <p><strong>Email:</strong> privacy@ucguide.com</p>
-                <p><strong>Website:</strong> https://ucguide.com</p>
+                <p><strong>Email:</strong> privacy@ulcerative-colitis.vercel.app</p>
+                <p><strong>Website:</strong> https://ulcerative-colitis.vercel.app</p>
               </div>
             </div>
           </section>

@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://ucguide.com'),
+  metadataBase: new URL('https://ulcerative-colitis.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ucguide.com',
+    url: 'https://ulcerative-colitis.vercel.app',
     siteName: 'UC Guide',
     title: 'UC Guide - Comprehensive Ulcerative Colitis Resource',
     description: 'Your comprehensive guide to ulcerative colitis. Access evidence-based information, practical tools, and supportive resources for managing UC.',

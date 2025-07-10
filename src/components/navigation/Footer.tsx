@@ -14,7 +14,7 @@ const footerLinks = {
   resources: [
     { name: 'Research', href: '/resources/research' },
     { name: 'FAQ', href: '/resources/faq' },
-    { name: 'Community', href: '/community' },
+    // { name: 'Community', href: '/community' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },

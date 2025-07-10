@@ -8,7 +8,7 @@ Allow: /resources
 Allow: /community
 
 # Sitemap
-Sitemap: https://ucguide.com/sitemap.xml
+Sitemap: https://ulcerative-colitis.vercel.app/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
