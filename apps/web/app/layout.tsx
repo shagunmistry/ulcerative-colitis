@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Oswald, Space_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
