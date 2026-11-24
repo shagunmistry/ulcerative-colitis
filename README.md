@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ulcerative Colitis
 
-## Getting Started
+A home for understanding ulcerative colitis, for patients, hobbyists and scientists:
+a 3D simulator, and sourced summaries of causes, medicines and other approaches.
 
-First, run the development server:
+**Educational only. Not medical advice. The simulator is illustrative and unvalidated.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Run it
+
+Needs Node 24 and pnpm 10.
+
+```sh
+pnpm install
+pnpm dev              # http://localhost:3000
+pnpm test
+pnpm typecheck
+pnpm build
+pnpm verify:evidence  # checks cited titles and figures against PubMed (needs network)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | What it holds |
+|---|---|
+| `apps/web` | Next.js site |
+| `packages/sim` | The disease model |
+| `packages/viz3d` | Colon anatomy logic and the 3D scene |
+| `packages/evidence` | Sources, trial figures and written claims |
+| `pipelines` | Scripts that check or fetch data |
+| `docs` | Design notes |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Planned, not yet built: `ml/` (Python training, linked to Hugging Face and Kaggle),
+and a research and trials hub.
 
-## Learn More
+## Deploying
 
-To learn more about Next.js, take a look at the following resources:
+On Vercel, set the project's root directory to `apps/web`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Theme
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Colours, type and the smoke layer follow shagunmistry.com. Two rules carry over:
+`--source` (red) marks provenance, and `--signal` (orange) marks anything not to be
+taken as fact, such as the simulation.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Code: [Apache-2.0](LICENSE)
+- Written content: [CC BY 4.0](LICENSE-CONTENT)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [NOTICE](NOTICE) for what falls under each.

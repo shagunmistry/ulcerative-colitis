@@ -1,0 +1,29 @@
+{
+  "name": "@uc/viz3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./scene": "./src/ColonScene.tsx"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.1",
+    "@types/three": "^0.187.0",
+    "typescript": "~5.9.3",
+    "vitest": "^5.1.1"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "@uc/sim": "workspace:*",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "license": "Apache-2.0"
+}

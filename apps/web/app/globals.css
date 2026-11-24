@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Gotham theme, copied from shagunmistry.com.
+ * --source marks provenance (citations, dates) and the interactive accent.
+ * --signal marks anything not to be trusted as fact: here, the simulation.
+ */
+@layer base {
+  :root {
+    --paper: #f3e4cf;
+    --paper-deep: #ebd5ba;
+    --surface-2: #e2c4a4;
+    --ink: #1a1310;
+    --ink-soft: #5a4232;
+    --source: #971b12;
+    --sage: #345530;
+    --signal: #7a4508;
+    --rule: rgba(26, 19, 16, 0.16);
+    color-scheme: light;
+  }
+
+  :root.dark {
+    --paper: #0b0909;
+    --paper-deep: #151010;
+    --surface-2: #211817;
+    --ink: #ede4e0;
+    --ink-soft: #a39590;
+    --source: #f0453a;
+    --sage: #8fb276;
+    --signal: #f5a742;
+    --rule: rgba(237, 228, 224, 0.13);
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: var(--font-instrument), system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  ::selection {
+    background: var(--source);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--source);
+    outline-offset: 3px;
+  }
+
+  input[type="range"],
+  input[type="checkbox"] {
+    accent-color: var(--source);
+  }
+}
+
+@layer components {
+  .display {
+    font-family: var(--font-display), "Arial Narrow", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+  .slug {
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
+    font-weight: 500;
+  }
+  /* Monospace means a measured or computed value. */
+  .timecode {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .panel {
+    border: 1px solid var(--rule);
+    background: var(--paper-deep);
+  }
+  .button {
+    @apply inline-flex items-center justify-center rounded-md border border-[var(--rule)] bg-[var(--paper-deep)] px-3 py-2 text-sm font-medium transition hover:border-[var(--source)] hover:text-[var(--source)];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

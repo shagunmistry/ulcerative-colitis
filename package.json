@@ -1,32 +1,20 @@
 {
-  "name": "ulcerative_colitis",
-  "version": "0.1.0",
+  "name": "ulcerative-colitis",
   "private": true,
+  "packageManager": "pnpm@10.30.2",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@headlessui/react": "^2.2.4",
-    "@vercel/analytics": "^1.5.0",
-    "clsx": "^2.1.1",
-    "motion": "^12.23.0",
-    "next": "15.3.5",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.1"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "verify:evidence": "node pipelines/verify-evidence.mjs"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.5",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "turbo": "^2.11.13",
+    "typescript": "~5.9.3"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24.0.0 <25"
   }
 }
