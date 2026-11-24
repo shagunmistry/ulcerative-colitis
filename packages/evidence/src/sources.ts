@@ -1,6 +1,9 @@
 export interface Source {
   id: string;
-  pmid: string;
+  /** PubMed id, for papers */
+  pmid?: string;
+  /** address, for web pages */
+  url?: string;
   title: string;
   journal: string;
   year: number;
@@ -14,7 +17,25 @@ const s = (id: string, pmid: string, year: number, journal: string, title: strin
   title,
 });
 
+const web = (id: string, url: string, year: number, journal: string, title: string): Source => ({
+  id,
+  url,
+  year,
+  journal,
+  title,
+});
+
+const NIDDK = "https://www.niddk.nih.gov/health-information/digestive-diseases/ulcerative-colitis";
+const NIDDK_NAME = "National Institute of Diabetes and Digestive and Kidney Diseases";
+
 export const SOURCES: Source[] = [
+  // Public health pages
+  web("niddk-definition", `${NIDDK}/definition-facts`, 2020, NIDDK_NAME, "Definition & Facts of Ulcerative Colitis"),
+  web("niddk-symptoms", `${NIDDK}/symptoms-causes`, 2020, NIDDK_NAME, "Symptoms & Causes of Ulcerative Colitis"),
+  web("niddk-diagnosis", `${NIDDK}/diagnosis`, 2020, NIDDK_NAME, "Diagnosis of Ulcerative Colitis"),
+  web("niddk-treatment", `${NIDDK}/treatment`, 2020, NIDDK_NAME, "Treatment for Ulcerative Colitis"),
+  web("nhs-uc", "https://www.nhs.uk/conditions/ulcerative-colitis/", 2026, "NHS", "Ulcerative colitis"),
+
   // Guidelines and overviews
   s("primer-2020", "32913180", 2020, "Nature Reviews Disease Primers", "Ulcerative colitis"),
   s("acg-2025", "40701556", 2025, "American Journal of Gastroenterology", "ACG Clinical Guideline Update: Ulcerative Colitis in Adults"),
@@ -66,4 +87,4 @@ export function getSource(id: string): Source {
   return found;
 }
 
-export const sourceUrl = (source: Source) => `https://pubmed.ncbi.nlm.nih.gov/${source.pmid}/`;
+export const sourceUrl = (source: Source) => source.url ?? `https://pubmed.ncbi.nlm.nih.gov/${source.pmid}/`;

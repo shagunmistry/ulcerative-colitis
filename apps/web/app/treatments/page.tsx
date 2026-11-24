@@ -1,7 +1,8 @@
-import { getSource, sourceUrl, TRIALS, type Trial } from "@uc/evidence";
-import { THERAPIES } from "@uc/sim";
+import { getSource, sourceUrl, topicsIn, TRIALS, type Trial } from "@uc/evidence";
 import type { Metadata } from "next";
 import { Cite, Page } from "@/components/Page";
+import { Contents, TopicList } from "@/components/Topic";
+import { TreatmentsSwitch } from "@/components/TreatmentsSwitch";
 
 export const metadata: Metadata = { title: "Medicines" };
 
@@ -23,7 +24,7 @@ function TrialList({ measure }: { measure: Trial["measure"] }) {
       {TRIALS.filter((t) => t.measure === measure).map((t) => (
         <li key={t.drug} className="grid gap-x-10 gap-y-2 py-5 md:grid-cols-[16rem_1fr]">
           <div>
-            <h3 className="display text-xl">{t.drug}</h3>
+            <h4 className="display text-xl">{t.drug}</h4>
             <p className="text-sm text-[var(--ink-soft)]">Blocks or modulates: {t.target}</p>
             {t.investigational && <p className="slug text-[var(--signal)]">Investigational, phase 2 result</p>}
           </div>
@@ -46,37 +47,41 @@ function TrialList({ measure }: { measure: Trial["measure"] }) {
 }
 
 export default function Treatments() {
+  const topics = topicsIn("medicine");
   return (
     <Page
-      title="What medicines did in trials"
-      intro="Each pair compares one dose of a drug with placebo in the first weeks of one trial. Compare each drug with its own placebo only."
+      evidence
+      title="Medicines"
+      intro="What the main drug families do, then what individual drugs achieved against placebo in trials."
     >
-      <p className="max-w-prose border-l-2 border-[var(--signal)] pl-4 text-[var(--signal)]">
+      <TreatmentsSwitch current="/treatments" />
+      <Contents topics={topics} />
+      <h2 className="sr-only">Drug families</h2>
+      <div className="mt-4">
+        <TopicList topics={topics} />
+      </div>
+
+      <h2 id="trials" className="display mt-14 scroll-mt-32 text-3xl">
+        What medicines did in trials
+      </h2>
+      <p className="mt-3 max-w-prose text-[var(--ink-soft)]">
+        Each pair compares one dose of a drug with placebo in the first weeks of one trial. Compare each drug with its
+        own placebo only.
+      </p>
+      <p className="mt-5 max-w-prose border-l-2 border-[var(--signal)] pl-4 text-[var(--signal)]">
         Do not rank drugs by these bars. The trials enrolled different patients, used different definitions and measured
         at different times. For comparative advice, see the guidelines below.
       </p>
 
-      <h2 className="display mt-12 text-3xl">Clinical remission</h2>
+      <h3 className="display mt-10 text-2xl">Clinical remission</h3>
       <p className="mb-5 mt-2 max-w-prose text-[var(--ink-soft)]">Little or no disease activity, as each trial defined it.</p>
       <TrialList measure="Clinical remission" />
 
-      <h2 className="display mt-12 text-3xl">Clinical response</h2>
+      <h3 className="display mt-10 text-2xl">Clinical response</h3>
       <p className="mb-5 mt-2 max-w-prose text-[var(--ink-soft)]">
         A meaningful improvement, a lower bar than remission.
       </p>
       <TrialList measure="Clinical response" />
-
-      <h2 className="display mt-12 text-3xl">Drug families</h2>
-      <div className="mt-5 grid gap-6 md:grid-cols-2">
-        {THERAPIES.filter((t) => t.id !== "microbial").map((t) => (
-          <article key={t.id} className="panel p-5">
-            <h3 className="display text-xl">{t.name}</h3>
-            <p className="text-sm text-[var(--ink-soft)]">For example {t.examples}</p>
-            <p className="mt-3 text-sm">{t.mechanism}</p>
-            <Cite ids={t.sourceIds} />
-          </article>
-        ))}
-      </div>
 
       <h2 className="display mt-12 text-3xl">Guidelines</h2>
       <Cite ids={["aga-2024", "acg-2025"]} />

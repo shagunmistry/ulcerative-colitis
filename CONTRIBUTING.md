@@ -2,10 +2,17 @@
 
 ## Medical claims
 
-- Every claim cites a source in `packages/evidence/src/sources.ts` (PubMed).
+- Every claim cites a source in `packages/evidence/src/sources.ts`: a PubMed paper, or
+  a public health page for basic facts.
 - Put each quoted number in the item's `figures` (or the trial's `quoted`) and run
   `pnpm verify:evidence`. It confirms the number appears in the abstract. It cannot
   confirm that the sentence around it is a fair reading, so a reviewer must.
+- Numbers taken from web pages are not checked automatically. Check them by hand.
+- Each topic (`topics.ts`, `content.ts`) needs a plain summary in short sentences, a
+  caveat, the science, and sources.
+- Further reading (`links.ts`) is limited to public health bodies, professional
+  societies, established patient charities, registries and dataset hosts. No sellers or
+  drug company promotion. Run `pnpm verify:links` after adding one.
 - State limits next to findings. Do not present early or small studies as settled.
 - Never compare drugs across separate trials.
 - Update `LAST_CHECKED` when you re-check statements.

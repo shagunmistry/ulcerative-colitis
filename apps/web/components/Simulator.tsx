@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Mucosa } from "./Mucosa";
+import { SceneBoundary } from "./SceneBoundary";
 import { Timeline } from "./Timeline";
 
 const ColonScene = dynamic(() => import("@uc/viz3d/scene"), {
@@ -100,7 +101,9 @@ export function Simulator() {
       <div className="min-w-0 space-y-6">
         <section aria-label="3D colon" className="panel">
           <div className="relative h-[26rem] sm:h-[34rem]">
-            <ColonScene extent={now.extent} inflammation={now.inflammation} onSegment={setSegment} />
+            <SceneBoundary>
+              <ColonScene extent={now.extent} inflammation={now.inflammation} onSegment={setSegment} />
+            </SceneBoundary>
             <div className="pointer-events-none absolute left-4 top-3">
               <p className="display text-2xl" aria-live="polite">
                 {montrealExtent(now.extent, now.inflammation)}

@@ -6,11 +6,10 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const MENU = [
-  { href: "/", label: "Simulator" },
-  { href: "/causes", label: "Causes" },
-  { href: "/treatments", label: "Medicines" },
-  { href: "/alternatives", label: "Other approaches" },
-  { href: "/model", label: "How the model works" },
+  { href: "/understand", label: "Understand" },
+  { href: "/treatments", label: "Treatments" },
+  { href: "/simulator", label: "Simulator" },
+  { href: "/search", label: "Search" },
 ];
 
 function ThemeToggle() {
@@ -33,15 +32,15 @@ export function Header() {
         <Link href="/" className="display text-lg hover:text-[var(--source)]">
           Ulcerative Colitis
         </Link>
-        <nav aria-label="Main" className="order-3 w-full overflow-x-auto lg:order-none lg:w-auto">
-          <ul className="flex items-center gap-6 whitespace-nowrap">
+        <nav aria-label="Main" className="order-3 w-full md:order-none md:w-auto">
+          <ul className="flex items-center justify-between gap-4 md:justify-start md:gap-8">
             {MENU.map((item) => {
-              const active = pathname === item.href;
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    aria-current={active ? "page" : undefined}
+                    aria-current={pathname === item.href ? "page" : undefined}
                     className={`slug border-b py-1 transition-colors ${
                       active
                         ? "border-[var(--source)] text-[var(--source)]"

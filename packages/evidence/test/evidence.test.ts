@@ -7,7 +7,8 @@ const ids = new Set(SOURCES.map((s) => s.id));
 describe("evidence", () => {
   it("has unique source ids and PubMed ids", () => {
     expect(ids.size).toBe(SOURCES.length);
-    expect(new Set(SOURCES.map((s) => s.pmid)).size).toBe(SOURCES.length);
+    const pmids = SOURCES.flatMap((s) => s.pmid ?? []);
+    expect(new Set(pmids).size).toBe(pmids.length);
   });
 
   it("builds a PubMed link for every source", () => {

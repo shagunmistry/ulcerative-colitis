@@ -7,7 +7,8 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "verify:evidence": "node pipelines/verify-evidence.mjs"
+    "verify:evidence": "node pipelines/verify-evidence.mjs",
+    "verify:links": "node --max-http-header-size=65536 pipelines/verify-links.mjs"
   },
   "devDependencies": {
     "turbo": "^2.11.13",
