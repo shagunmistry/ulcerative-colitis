@@ -1,5 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { DATASETS, copyUrl, filterDatasets, linksFor, loadSnippet, type Copy } from "../src";
+import {
+  DATASETS,
+  SOURCES,
+  TOPICS,
+  copyUrl,
+  filterDatasets,
+  keyPapers,
+  linksFor,
+  loadSnippet,
+  topicHref,
+  type Copy,
+} from "../src";
 
 describe("datasets", () => {
   it("has complete, unique, dated entries", () => {
@@ -55,5 +66,29 @@ describe("datasets", () => {
 
   it("keeps datasets in topic further reading", () => {
     expect(linksFor("butyrate").some((l) => l.id === "ibdmdb")).toBe(true);
+  });
+});
+
+describe("key papers", () => {
+  it("lists every cited paper, and only papers", () => {
+    const listed = keyPapers().flatMap((g) => g.sources);
+    expect(listed.every((s) => s.pmid)).toBe(true);
+    expect(new Set(listed.map((s) => s.id))).toEqual(new Set(SOURCES.filter((s) => s.pmid).map((s) => s.id)));
+  });
+
+  it("groups papers under the topics that cite them, in topic order, then the rest", () => {
+    const groups = keyPapers();
+    const isPaper = (id: string) => SOURCES.some((s) => s.id === id && s.pmid);
+    const citing = TOPICS.filter((t) => t.sourceIds.some(isPaper));
+    const byTopic = groups.filter((g) => g.href);
+    expect(byTopic.map((g) => [g.title, g.href])).toEqual(citing.map((t) => [t.title, topicHref(t)]));
+    byTopic.forEach((g, i) =>
+      expect(g.sources.map((s) => s.id)).toEqual([...new Set(citing[i]!.sourceIds.filter(isPaper))]),
+    );
+    const cited = new Set(TOPICS.flatMap((t) => t.sourceIds));
+    const rest = SOURCES.filter((s) => s.pmid && !cited.has(s.id));
+    expect(groups.slice(byTopic.length)).toEqual(
+      rest.length ? [{ title: "Other cited papers", sources: rest }] : [],
+    );
   });
 });
