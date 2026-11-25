@@ -73,12 +73,17 @@ describe("dataset list", () => {
     expect(html).toContain(copyUrl(copy));
     expect(html).toContain(loadSnippet(copy));
     expect(html).toMatch(/<pre[^>]*overflow-x-auto/);
-    expect(html).toContain("Uploaded by a third party");
+    // A box that takes keyboard focus needs a role and a name.
+    const pre = /<pre[^>]*>/.exec(html)![0];
+    expect(pre).toContain('tabindex="0"');
+    expect(pre).toContain('role="region"');
+    expect(pre).toContain(`aria-label="Load code for ${copy.id} on ${copy.host}"`);
+    expect(html).toContain("Not named by the authors as the release");
     expect(html).not.toContain("Original release");
     expect(html).toContain(copy.note);
     const original = render([{ ...dataset, copies: [{ ...copy, original: true }] }]);
     expect(original).toContain("Original release");
-    expect(original).not.toContain("Uploaded by a third party");
+    expect(original).not.toContain("Not named by the authors as the release");
   });
 
   it("has no copy section for a dataset without copies", () => {
@@ -133,6 +138,11 @@ describe("ways to the data library", () => {
     const data = items[3]![1]!;
     expect(data).toContain('href="/data"');
     expect(data).toContain('aria-current="page"');
+  });
+
+  it("wraps the top bar rather than scrolling sideways", () => {
+    const list = /<ul class="([^"]*)"/.exec(renderToStaticMarkup(<Header />))![1]!;
+    expect(list.split(" ")).toContain("flex-wrap");
   });
 
   it("is linked from the landing page", () => {

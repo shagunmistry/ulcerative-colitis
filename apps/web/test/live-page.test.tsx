@@ -85,6 +85,9 @@ describe("data navigation", () => {
     for (const words of ["Live search", "IP address", "US National Library of Medicine", "Hugging Face", "2026-11-25"])
       expect(html).toContain(words);
     expect(html).not.toContain("no forms that send data");
+    // The links offered after an empty or failed search carry the term.
+    expect(html).toContain("in the address, which stays in your browser history");
+    for (const label of ["Run this search on", "on Hugging Face"]) expect(html).toContain(label);
   });
 });
 
@@ -234,6 +237,11 @@ describe("links to the source site", () => {
     const u = url({ tab: "papers", term: "diet", kind: "review" });
     expect(u.origin).toBe("https://pubmed.ncbi.nlm.nih.gov");
     expect(u.searchParams.get("term")).toBe('"colitis, ulcerative"[MeSH Terms] AND (diet) AND review[pt]');
+  });
+
+  it("repeats an excluding paper search as the site sends it", () => {
+    const u = url({ tab: "papers", term: "NOT cancer", kind: "all" });
+    expect(u.searchParams.get("term")).toBe('"colitis, ulcerative"[MeSH Terms] NOT (cancer)');
   });
 
   it("links both kinds on Hugging Face", () => {

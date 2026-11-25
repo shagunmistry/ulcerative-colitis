@@ -24,8 +24,8 @@
 - Datasets live in `packages/evidence/src/datasets.ts`. Add one only if it holds
   ulcerative colitis or inflammatory bowel disease data from a public repository,
   research programme or peer-reviewed release, and has a reachable terms page, given as
-  `termsUrl`. The one recorded exception is IBDMDB, which publishes no terms: it has no
-  `termsUrl`, and its licence and access are shown as not stated.
+  `termsUrl`. The one recorded exception is IBDMDB, for which we found no terms page: it
+  has no `termsUrl`, and its licence and access are shown as not stated.
 - Take licence, access and size from the host's own page. If it does not state one,
   write `Not stated` (access: `not-stated`). Never infer it. Leave out any dataset
   you cannot check.

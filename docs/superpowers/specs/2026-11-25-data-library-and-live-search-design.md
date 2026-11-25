@@ -76,8 +76,8 @@ size, licence, access, how to cite, last-checked date and an external link.
   cite them. No abstracts are copied.
 - A machine-readable copy at `/data/datasets.json` for scripts.
 - A dataset may list copies on Hugging Face or Kaggle ("Get it on"), each with
-  copy-and-paste code to load it. Say whether the copy is the original release or a
-  third party's. Licence and access always come from the original. Check each by hand.
+  copy-and-paste code to load it. Say whether the copy is the original release or one
+  the authors did not name as the release. Licence and access always come from the original. Check each by hand.
 - `pnpm verify:links` covers dataset addresses, including copies.
 - `CONTRIBUTING.md` gains the dataset rules, so others can add entries by pull request.
 - Site search finds datasets.

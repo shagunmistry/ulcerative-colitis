@@ -51,9 +51,37 @@ function toResult(id: string, s: Summary): Result {
   };
 }
 
+const OPERATOR = /^(AND|OR|NOT)$/;
+const isOperand = (word = "") => /[\p{L}\p{N}]/u.test(word) && !OPERATOR.test(word);
+
+/**
+ * PubMed silently drops an operator it cannot apply, so those are written in lower case, as
+ * ordinary words. `AND` and `OR` need a word on each side, and `NOT` a word after it and a word
+ * or `AND` before it. In `x AND NOT y` only the `NOT` is left as typed, because PubMed drops a
+ * `NOT` that follows the operator `AND`.
+ */
+const asQuery = (term: string) => {
+  // Words are at the even places and what separated them at the odd ones.
+  const parts = term.split(/([ ,]+)/);
+  return parts
+    .map((part, i) => {
+      if (!OPERATOR.test(part)) return part;
+      const before = parts[i - 2];
+      const works = isOperand(parts[i + 2]) && (isOperand(before) || (part === "NOT" && before === "AND"));
+      return works ? part : part.toLowerCase();
+    })
+    .join("");
+};
+
 /** The query PubMed receives: an already cleaned term, kept within ulcerative colitis. */
-export const paperQuery = (term: string, kind: PaperKind) =>
-  `"colitis, ulcerative"[MeSH Terms]${term && ` AND (${term})`}${KINDS[kind]}`;
+export const paperQuery = (term: string, kind: PaperKind) => {
+  // PubMed ignores a `NOT` that opens a bracket, so a leading one is applied to the disease itself.
+  const [, rest, first] = /^[ ,]*NOT[ ,]+(([^ ,]+).*)$/.exec(term) ?? [];
+  const excludes = isOperand(first);
+  const words = excludes ? rest : term;
+  const clause = words && ` ${excludes ? "NOT" : "AND"} (${asQuery(words)})`;
+  return `"colitis, ulcerative"[MeSH Terms]${clause}${KINDS[kind]}`;
+};
 
 async function ask(script: string, params: Record<string, string>, signal: AbortSignal, f?: Fetch) {
   const query = new URLSearchParams({ db: "pubmed", retmode: "json", tool: "ulcerative-colitis-web", ...params });
@@ -86,8 +114,10 @@ export async function searchPapers(
   const total = Number(found.count);
   const start = Number(q.next ?? 0) + PAGE;
   const next = start < total && start <= LAST_START ? String(start) : undefined;
-  const ids = found.idlist;
-  if (!ids.length) return { results: [], total, next };
+  // Ids go into addresses, so anything but a number is dropped.
+  const ids = found.idlist.filter((id) => /^\d+$/.test(id));
+  if (!found.idlist.length) return { results: [], total, next };
+  if (!ids.length) throw new Error("PubMed sent no usable ids");
   const { result } = await ask("esummary", { id: ids.join(",") }, signal, f);
   const results = ids.flatMap((id) => {
     const summary = result?.[id];

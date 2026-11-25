@@ -294,6 +294,56 @@ describe("searchPapers", () => {
     expect(urls[0].searchParams.get("term")).toBe(expected);
   });
 
+  // PubMed ignores a NOT that nothing comes before, so the exclusion is made against the disease.
+  it.each([
+    ["NOT cancer", "all", `${mesh} NOT (cancer)`],
+    ["NOT cancer", "review", `${mesh} NOT (cancer) AND review[pt]`],
+    ["NOT cancer", "guideline", `${mesh} NOT (cancer) AND (guideline[pt] OR practice guideline[pt])`],
+    ["NOT a OR b", "all", `${mesh} NOT (a OR b)`],
+    ["NOT a OR b", "trial", `${mesh} NOT (a OR b) AND randomized controlled trial[pt]`],
+    [",NOT, cancer", "all", `${mesh} NOT (cancer)`],
+    ["(NOT cancer)", "all", `${mesh} NOT (cancer)`],
+    ["NOT cancer OR", "all", `${mesh} NOT (cancer or)`],
+    ["NOT cancer OR NOT diet", "all", `${mesh} NOT (cancer or not diet)`],
+    ["NOT a) OR (b", "all", `${mesh} NOT (a OR b)`],
+  ] as const)("excludes what follows a leading NOT: %j, %s", async (term, kind, expected) => {
+    const { f, urls } = fake(found(0, []));
+    await searchPapers({ term, kind }, signal(), f);
+    expect(urls[0].searchParams.get("term")).toBe(expected);
+  });
+
+  it.each([
+    ["NOT", "not"],
+    ["NOT -", "not -"],
+    ["NOT NOT smoking", "not not smoking"],
+    ["NOT AND smoking", "not and smoking"],
+    ["diet NOT", "diet not"],
+    ["diet OR NOT smoking", "diet or not smoking"],
+    ["OR smoking", "or smoking"],
+    ["OR NOT smoking", "or not smoking"],
+    ["diet AND", "diet and"],
+    ["diet AND AND smoking", "diet and and smoking"],
+    ["diet NOT AND smoking", "diet not and smoking"],
+    ["diet,NOT", "diet,not"],
+    // PubMed drops a NOT that follows AND, but obeys it once the AND is an ordinary word.
+    ["diet AND NOT smoking", "diet and NOT smoking"],
+    ["diet NOT smoking", "diet NOT smoking"],
+    ["diet,NOT smoking", "diet,NOT smoking"],
+    ["diet AND smoking OR stress", "diet AND smoking OR stress"],
+    ["1,25-dihydroxyvitamin D", "1,25-dihydroxyvitamin D"],
+  ])("sends %j as %j", async (term, sent) => {
+    const { f, urls } = fake(found(0, []));
+    await searchPapers({ term, kind: "all" }, signal(), f);
+    expect(urls[0].searchParams.get("term")).toBe(`${mesh} AND (${sent})`);
+  });
+
+  it("keeps only ids that are numbers", async () => {
+    const f = fake(found(4, ["1", "2&db=x", "", "3"]), summaries({ uid: "1" }, { uid: "3" }));
+    const batch = await searchPapers({ term: "", kind: "all" }, signal(), f.f);
+    expect(f.urls[1].searchParams.get("id")).toBe("1,3");
+    expect(batch.results.map((r) => r.id)).toEqual(["1", "3"]);
+  });
+
   it("maps saved responses", async () => {
     const batch = await searchPapers({ term: "vedolizumab", kind: "review" }, signal(), fake(esearch, esummary).f);
     expect(batch.total).toBe(Number(esearch.esearchresult.count));
@@ -353,6 +403,7 @@ describe("searchPapers", () => {
     ["a search error with a list", [{ esearchresult: { ERROR: "x", count: "0", idlist: [] } }]],
     ["a top-level search error", [{ error: "API rate limit exceeded" }]],
     ["an empty search body", [{}]],
+    ["no usable ids", [found(1, ["../x"])]],
     ["a top-level summary error", [found(1, ["1"]), { error: "API rate limit exceeded" }]],
     ["a summary error", [found(1, ["1"]), { esummaryresult: ["Invalid uid"] }]],
     ["a summary of nothing asked for", [found(1, ["1"]), summaries()]],

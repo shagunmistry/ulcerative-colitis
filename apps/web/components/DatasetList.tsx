@@ -101,14 +101,19 @@ function CopyItem({ copy }: { copy: Copy }) {
       </p>
       <p className="mt-1 text-sm">
         <span className={copy.original ? "text-[var(--source)]" : "text-[var(--signal)]"}>
-          {copy.original ? "Original release" : "Uploaded by a third party"}
+          {copy.original ? "Original release" : "Not named by the authors as the release"}
         </span>
         <span className="text-[var(--ink-soft)]">
           . Last checked <span className="timecode">{copy.checkedOn}</span>.
         </span>
       </p>
       {copy.note && <p className="mt-1 text-sm">{copy.note}</p>}
-      <pre tabIndex={0} className="timecode mt-2 overflow-x-auto border border-[var(--rule)] bg-[var(--paper)] p-3 text-sm">
+      <pre
+        tabIndex={0}
+        role="region"
+        aria-label={`Load code for ${copy.id} on ${copy.host}`}
+        className="timecode mt-2 overflow-x-auto border border-[var(--rule)] bg-[var(--paper)] p-3 text-sm"
+      >
         <code>{snippet}</code>
       </pre>
       <CopyButton text={snippet} name={`${copy.id} on ${copy.host}`} />

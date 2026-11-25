@@ -116,7 +116,7 @@ it("lists every cited paper, and only papers", () => {
   expect(new Set(listed.map((s) => s.id))).toEqual(new Set(SOURCES.filter((s) => s.pmid).map((s) => s.id)));
 });
 ```
-In `data.test.tsx` (render as `feedback.test.tsx` does): `DatasetList` output contains each title, `Licence`, `How to cite`, `Last checked`; a dataset with a copy shows `Get it on`, its snippet, and `Original release` or `Uploaded by a third party`. The route's `GET()` JSON equals `{ datasets: DATASETS }`.
+In `data.test.tsx` (render as `feedback.test.tsx` does): `DatasetList` output contains each title, `Licence`, `How to cite`, `Last checked`; a dataset with a copy shows `Get it on`, its snippet, and `Original release` or `Not named by the authors as the release`. The route's `GET()` JSON equals `{ datasets: DATASETS }`.
 
 - [ ] **Step 2:** Run `pnpm test`. Expected: FAIL.
 - [ ] **Step 3:** Implement. `keyPapers` groups by `TOPICS` order using `sourceIds`, then a final group titled `Other cited papers` for the rest. The page has three headed sections: `Datasets`, `Key papers`, `Registries and tools` (links of kind `"registry"`). Filters are two groups of toggle buttons with `aria-pressed` (type; access: All, Open, Registration, Application), with a message when nothing matches. All entries are in the server HTML. Each card has `id={dataset.id}` and scroll margin for the sticky header. Snippets sit in `<pre>` that scrolls inside the card, with a Copy button. `access: "not-stated"` shows `Not stated`. Route uses `export const dynamic = "force-static"`; page links to it.

@@ -35,7 +35,7 @@ export function Header() {
           Ulcerative Colitis
         </Link>
         <nav aria-label="Main" className="order-3 w-full md:order-none md:w-auto">
-          <ul className="flex items-center justify-between gap-0.5 md:justify-start md:gap-8">
+          <ul className="flex flex-wrap items-center justify-between gap-0.5 md:justify-start md:gap-8">
             {MENU.map((item) => {
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (

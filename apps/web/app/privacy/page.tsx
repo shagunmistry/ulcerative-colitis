@@ -41,7 +41,9 @@ export default function Privacy() {
           is different. When you press Search, a common search or Show more there, your browser sends the term, the
           filter you chose and your request, including your IP address, to the US National Library of Medicine (trials
           and papers) or to Hugging Face (datasets and models). We do not put the term in our page address, save it, or
-          send it to our servers or analytics.
+          send it to our servers or analytics. When a search fails or finds nothing, the &ldquo;Run this search on
+          ...&rdquo; and &ldquo;Search ... on Hugging Face&rdquo; links send your term to that site in the address, which
+          stays in your browser history.
         </p>
         <p>
           <External href="https://www.nlm.nih.gov/web_policies.html#privacy_security">
