@@ -14,10 +14,20 @@ const display = Oswald({ subsets: ["latin"], variable: "--font-display", display
 const mono = Space_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "700"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ulcerativecolitis.org"),
   title: { default: "Understand ulcerative colitis", template: "%s, Ulcerative Colitis" },
   description:
     "Ulcerative colitis explained in plain language with sources: causes, medicines, other approaches and a 3D simulation.",
   manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    siteName: "Ulcerative Colitis",
+    title: "Understand ulcerative colitis",
+    description:
+      "Ulcerative colitis explained in plain language with sources: causes, medicines, other approaches and a 3D simulation.",
+    images: [{ url: "/og?title=Understand%20ulcerative%20colitis", width: 1200, height: 630 }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

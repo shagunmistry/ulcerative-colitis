@@ -4,7 +4,13 @@ import { Page } from "@/components/Page";
 import { Contents, TopicList } from "@/components/Topic";
 import { UrgentCare } from "@/components/UrgentCare";
 
-export const metadata: Metadata = { title: "Understand" };
+export const metadata: Metadata = {
+  title: "Understand",
+  openGraph: {
+    title: "Understand ulcerative colitis",
+    images: [{ url: "/og?title=Understand%20ulcerative%20colitis", width: 1200, height: 630 }],
+  },
+};
 
 export default function Understand() {
   const basics = topicsIn("basics");
