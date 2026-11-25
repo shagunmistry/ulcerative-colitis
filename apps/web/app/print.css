@@ -1,0 +1,103 @@
+/*
+ * Print styles: strip the interface, open the evidence, and keep the page
+ * readable in black on white.
+ */
+@page {
+  margin: 2cm;
+}
+
+@media print {
+  :root,
+  :root.dark {
+    --paper: #fff;
+    --paper-deep: #fff;
+    --surface-2: #fff;
+    --ink: #000;
+    --ink-soft: #000;
+    --source: #000;
+    --sage: #000;
+    --signal: #000;
+    --rule: #555;
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: #000 !important;
+  }
+
+  header,
+  footer,
+  nav,
+  button,
+  .sticky,
+  [class*="sticky"],
+  [class*="fixed"],
+  [style*="position: sticky"] {
+    display: none !important;
+  }
+
+  /* Closed details still print their contents. */
+  details {
+    display: block !important;
+  }
+  details::details-content {
+    content-visibility: visible;
+    display: block;
+  }
+  details > *:not(summary) {
+    display: block !important;
+  }
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::marker {
+    content: "";
+  }
+
+  a {
+    text-decoration: underline;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    word-break: break-all;
+  }
+
+  article,
+  .panel,
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  img,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  pre,
+  code {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+  }
+}

@@ -7,6 +7,7 @@ import { ServiceWorker } from "@/components/ServiceWorker";
 import { SmokeBackground } from "@/components/SmokeBackground";
 import { Providers } from "./providers";
 import "./globals.css";
+import "./print.css";
 
 const instrument = Instrument_Sans({ subsets: ["latin"], variable: "--font-instrument", display: "swap" });
 const display = Oswald({ subsets: ["latin"], variable: "--font-display", display: "swap" });
