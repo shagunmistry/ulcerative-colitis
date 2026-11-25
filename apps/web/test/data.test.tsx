@@ -1,9 +1,13 @@
 import { DATASETS, LINKS, copyUrl, loadSnippet, type Dataset } from "@uc/evidence";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import Data from "../app/data/page";
+import Home from "../app/page";
 import { GET, dynamic } from "../app/data/datasets.json/route";
 import { DatasetList } from "../components/DatasetList";
+import { Header } from "../components/Header";
+
+vi.mock("next/navigation", () => ({ usePathname: () => "/data" }));
 
 /** Undoes React's escaping, so text can be compared with the data. */
 const decode = (html: string) =>
@@ -118,6 +122,21 @@ describe("data page", () => {
 
   it("links to the machine-readable copy", () => {
     expect(html).toContain('href="/data/datasets.json"');
+  });
+});
+
+describe("ways to the data library", () => {
+  it("is in the top bar, marked as the current page", () => {
+    const html = renderToStaticMarkup(<Header />);
+    const items = [...html.matchAll(/<li><a ([^>]*)>([^<]+)<\/a><\/li>/g)];
+    expect(items.map((m) => m[2])).toEqual(["Understand", "Treatments", "Simulator", "Data", "Search"]);
+    const data = items[3]![1]!;
+    expect(data).toContain('href="/data"');
+    expect(data).toContain('aria-current="page"');
+  });
+
+  it("is linked from the landing page", () => {
+    expect(renderToStaticMarkup(<Home />)).toMatch(/Work with the data<\/h2>.*href="\/data"/);
   });
 });
 

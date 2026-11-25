@@ -15,9 +15,10 @@ function start() {
     return {
       match: async (request: { url: string }) => store.get(request.url)?.clone(),
       put: async (request: { url: string }, response: Response) => void store.set(request.url, response),
-      addAll: async () => {},
+      addAll: async (paths: string[]) => void installed.push(...paths),
     };
   };
+  const installed: string[] = [];
   const server = { online: true, body: "old" };
   const handlers: Record<string, (event: any) => void> = {};
   runInNewContext(SOURCE, {
@@ -60,7 +61,15 @@ function start() {
     await done;
   }
 
-  return { server, stores, get, activate };
+  /** Returns the paths that must all download for the worker to install. */
+  async function install() {
+    let done: Promise<unknown> | undefined;
+    handlers.install!({ waitUntil: (p: Promise<unknown>) => (done = p) });
+    await done;
+    return installed;
+  }
+
+  return { server, stores, get, activate, install };
 }
 
 describe("service worker", () => {
@@ -101,10 +110,16 @@ describe("service worker", () => {
     expect(await start().get(path)).toBeNull();
   });
 
-  it("deletes the cache that held stale content", async () => {
+  it("saves the data library for offline use, without needing its JSON copy", async () => {
+    const shell = await start().install();
+    expect(shell).toContain("/data");
+    expect(shell).not.toContain("/data/datasets.json");
+  });
+
+  it.each(["uc-v1", "uc-v2"])("deletes the old cache %s", async (name) => {
     const sw = start();
-    sw.stores.set("uc-v1", new Map());
+    sw.stores.set(name, new Map());
     await sw.activate();
-    expect([...sw.stores.keys()]).not.toContain("uc-v1");
+    expect([...sw.stores.keys()]).not.toContain(name);
   });
 });

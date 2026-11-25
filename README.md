@@ -1,8 +1,8 @@
 # Ulcerative Colitis
 
 A home for understanding ulcerative colitis, for patients, hobbyists and scientists:
-plain-language topics with the science and sources behind them, further reading, search,
-and a 3D simulator.
+plain-language topics with the science and sources behind them, further reading, a data
+library, search, and a 3D simulator.
 
 **Educational only. Not medical advice. The simulator is illustrative and unvalidated.**
 
@@ -24,10 +24,10 @@ pnpm verify:links     # checks that web sources and further reading still respon
 
 | Path | What it holds |
 |---|---|
-| `apps/web` | Next.js site |
+| `apps/web` | Next.js site, including the data library at `/data` |
 | `packages/sim` | The disease model |
 | `packages/viz3d` | Colon anatomy logic and the 3D scene |
-| `packages/evidence` | Sources, topics, trial figures, further reading and search |
+| `packages/evidence` | Sources, topics, trial figures, datasets, further reading and search |
 | `pipelines` | Scripts that check or fetch data |
 | `docs` | Design notes |
 

@@ -29,7 +29,7 @@ function Go({ href, children }: { href: string; children: React.ReactNode }) {
 export default function Home() {
   return (
     <div className="mx-auto w-full max-w-[1200px] px-6 py-10 lg:px-10 lg:py-16">
-      <div className="grid items-center gap-8 lg:grid-cols-2">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
         <div>
           <h1 className="display text-4xl sm:text-5xl">Understand ulcerative colitis</h1>
           <p className="mt-5 max-w-prose text-lg text-[var(--ink-soft)]">
@@ -63,6 +63,7 @@ export default function Home() {
           <Go href="/understand#genes">What may cause it</Go>
         </Path>
         <Path title="Work with the data" text="Inspect the model, read the code, find open datasets.">
+          <Go href="/data">Data library</Go>
           <Go href="/simulator/model">How the model works</Go>
           <li>
             <External href={REPO_URL}>Source code on GitHub</External>
