@@ -124,7 +124,7 @@ function message({ phase, query, results, total, next }: State) {
 
 function Labels({ tab, dataDate }: { tab: Tab; dataDate: State["dataDate"] }) {
   return (
-    <div className="mt-6 max-w-prose space-y-1 text-sm">
+    <div className="max-w-prose space-y-1 text-sm">
       <div className="space-y-1 font-medium text-[var(--signal)]">
         <p>Listed by {SERVICES[tab]}. Not reviewed by us.</p>
         {tab === "trials" && <p>Talk to your care team before contacting a study.</p>}
@@ -142,6 +142,7 @@ function Labels({ tab, dataDate }: { tab: Tab; dataDate: State["dataDate"] }) {
             "Waiting for the date ClinicalTrials.gov processed this data."
           )}{" "}
           We show selected fields, write status and phase codes as words, and list each treatment and country once.
+          Missing details are shown as &ldquo;Not stated&rdquo;, and entries without a valid trial number are left out.
         </p>
       )}
     </div>
@@ -153,22 +154,13 @@ export function LiveResults({ state, onMore }: { state: State; onMore: () => voi
   const { phase, query, results, next, dataDate } = state;
   const answered = !!query && (phase === "done" || results.length > 0);
   const elsewhere = !!query && (phase === "failed" || (phase === "done" && !results.length));
+  const some = results.length > 0;
+  const labels = answered && <Labels tab={query.tab} dataDate={dataDate} />;
+  // Each `false` below keeps its place, so the status stays the same element and its changes are announced.
   return (
     <section aria-label="Results" className="mt-8 border-t border-[var(--rule)] pt-4 [overflow-wrap:anywhere]">
-      <p role="status" className="text-sm font-medium">
-        {message(state)}
-      </p>
-      {elsewhere && (
-        <ul className="mt-2 space-y-1 text-sm">
-          {sourceLinks(query).map((source) => (
-            <li key={source.href}>
-              <External href={source.href}>{source.label}</External>
-            </li>
-          ))}
-        </ul>
-      )}
-      {answered && <Labels tab={query.tab} dataDate={dataDate} />}
-      {results.length > 0 && (
+      {some && labels}
+      {some && (
         <ul className="mt-4 divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
           {results.map((result) => (
             <li key={result.id} className="min-w-0 py-5">
@@ -187,9 +179,29 @@ export function LiveResults({ state, onMore }: { state: State; onMore: () => voi
           ))}
         </ul>
       )}
+      {/* Beside `Show more`, where whoever pressed it is looking. */}
+      <p role="status" className={`text-sm font-medium ${some ? "mt-4" : ""}`}>
+        {message(state)}
+      </p>
+      {elsewhere && (
+        <ul className="mt-2 space-y-1 text-sm">
+          {sourceLinks(query).map((source) => (
+            <li key={source.href}>
+              <External href={source.href}>{source.label}</External>
+            </li>
+          ))}
+        </ul>
+      )}
+      {!some && <div className="mt-4">{labels}</div>}
       {answered && next && (
         // Not `disabled` while loading, which would drop keyboard focus.
-        <button type="button" data-more className="button mt-4" aria-disabled={phase === "loading"} onClick={onMore}>
+        <button
+          type="button"
+          data-more
+          className="button mt-4 aria-disabled:cursor-wait aria-disabled:opacity-60 aria-disabled:hover:border-[var(--rule)] aria-disabled:hover:text-inherit"
+          aria-disabled={phase === "loading"}
+          onClick={onMore}
+        >
           Show more
         </button>
       )}

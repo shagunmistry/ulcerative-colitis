@@ -133,8 +133,37 @@ describe("shown results", () => {
 
   it("states how trial listings are changed", () => {
     expect(text(view(shown()))).toContain(
-      "We show selected fields, write status and phase codes as words, and list each treatment and country once.",
+      "We show selected fields, write status and phase codes as words, and list each treatment and country once. Missing details are shown as “Not stated”, and entries without a valid trial number are left out.",
     );
+  });
+
+  it.each(["loading", "failed", "offline", "done"] as const)(
+    "puts the %s message by Show more, below the results and their labels",
+    (phase) => {
+      const html = view(shown({ phase, next: "x" }));
+      const at = ["Listed by", "Title a", 'role="status"', "Show more"].map((part) => html.indexOf(part));
+      expect(at).not.toContain(-1);
+      expect(at).toEqual([...at].sort((a, b) => a - b));
+      expect(html.split('role="status"').length).toBe(2);
+      if (phase === "failed") {
+        const source = html.indexOf(sourceLinks(query())[0]!.href);
+        expect(source).toBeGreaterThan(at[2]!);
+        expect(source).toBeLessThan(at[3]!);
+      }
+    },
+  );
+
+  it.each(["done", "failed"] as const)("puts the %s message first when there are no results", (phase) => {
+    const html = view(shown({ phase, results: [] }));
+    expect(html).toMatch(/^<section[^>]*><p role="status"/);
+    if (phase === "done") expect(html.indexOf("Listed by")).toBeGreaterThan(html.indexOf(sourceLinks(query())[0]!.href));
+  });
+
+  it("shows Show more as unavailable while loading", () => {
+    const button = (phase: State["phase"]) => /<button[^>]*>Show more/.exec(view(shown({ phase, next: "x" })))![0];
+    expect(button("loading")).toContain('aria-disabled="true"');
+    expect(button("loading")).toContain("aria-disabled:opacity-60");
+    expect(button("done")).toContain('aria-disabled="false"');
   });
 
   it("gives the date ClinicalTrials.gov processed the data, or says it did not", () => {
@@ -265,6 +294,38 @@ describe("searching", () => {
     await searcher((a) => (state = reduce(state, a)), fetch, () => true).search(query());
     await settle();
     expect(state).toMatchObject({ phase: "done", dataDate: null });
+  });
+
+  it("treats an empty date as missing", async () => {
+    let state = EMPTY;
+    const fetch = (async (url: string) =>
+      new Response(JSON.stringify(url.endsWith("/version") ? { dataTimestamp: "" } : trialsPage([1])))) as Fetch;
+    await searcher((a) => (state = reduce(state, a)), fetch, () => true).search(query());
+    await settle();
+    expect(state.dataDate).toBeNull();
+  });
+
+  it("asks for a missing date again at Show more, and only then", async () => {
+    let state = EMPTY;
+    let versions = 0;
+    const fetch = (async (url: string) => {
+      if (!url.endsWith("/version"))
+        return new Response(JSON.stringify(trialsPage([1], { nextPageToken: "p2" })));
+      versions++;
+      return versions === 1
+        ? new Response("", { status: 500 })
+        : new Response(JSON.stringify({ dataTimestamp: "2026-11-24T09:00:00" }));
+    }) as Fetch;
+    const live = searcher((a) => (state = reduce(state, a)), fetch, () => true);
+    await live.search(query());
+    await settle();
+    expect(state.dataDate).toBeNull();
+    await live.more(state);
+    await settle();
+    expect(state.dataDate).toBe("2026-11-24");
+    await live.more(state);
+    await settle();
+    expect(versions).toBe(2);
   });
 
   it("does not fail the search when the data date cannot be fetched", async () => {

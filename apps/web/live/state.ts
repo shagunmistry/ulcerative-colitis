@@ -100,7 +100,7 @@ export function searcher(
 
   function loadDate() {
     // `undefined` means cancelled; a missing date is `null`.
-    runDate(async (signal) => (await trialsDataDate(signal, f)) ?? null).then(
+    runDate(async (signal) => (await trialsDataDate(signal, f)) || null).then(
       (date) => date !== undefined && dispatch({ type: "date", date }),
       () => dispatch({ type: "date", date: null }),
     );
@@ -116,10 +116,12 @@ export function searcher(
       await load(query);
     },
     /** The next page of the search that produced `state`. */
-    async more({ phase, query, next }: State) {
+    async more({ phase, query, next, dataDate }: State) {
       if (phase === "loading" || !query || !next) return;
       dispatch({ type: "more" });
       if (!online()) return dispatch({ type: "offline" });
+      // The date must be shown with trial data, so a failed request for it is tried again.
+      if (query.tab === "trials" && dataDate === null) loadDate();
       await load(query, next);
     },
     clear() {
