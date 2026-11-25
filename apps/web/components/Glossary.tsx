@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 
 /** Wraps a term and shows its definition on hover, tap or keyboard focus. */
 export function Glossary({
@@ -15,6 +15,17 @@ export function Glossary({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const id = useId();
+  const tip = useRef<HTMLSpanElement>(null);
+
+  // Centred over the term, then nudged back if that would leave the screen.
+  useLayoutEffect(() => {
+    const box = open ? tip.current?.getBoundingClientRect() : undefined;
+    if (!box) return;
+    const margin = 8;
+    const width = document.documentElement.clientWidth;
+    const shift = Math.max(margin - box.left, 0) + Math.min(width - margin - box.right, 0);
+    tip.current!.style.marginLeft = `${shift}px`;
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -57,6 +68,7 @@ export function Glossary({
       {children}
       {open && (
         <span
+          ref={tip}
           id={id}
           role="tooltip"
           className="absolute bottom-full left-1/2 z-50 mb-2 w-max max-w-[16rem] -translate-x-1/2 border border-[var(--rule)] bg-[var(--paper-deep)] px-3 py-2 text-left text-sm font-normal leading-snug text-[var(--ink)] shadow-lg"
