@@ -1,0 +1,126 @@
+{
+  "totalCount": 275,
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06636656",
+          "briefTitle": "A Study to Test Whether BI 3032950 Helps People With Ulcerative Colitis"
+        },
+        "statusModule": {
+          "overallStatus": "RECRUITING",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-11-25"
+          }
+        },
+        "designModule": {
+          "phases": [
+            "PHASE2"
+          ]
+        },
+        "armsInterventionsModule": {
+          "interventions": [
+            {
+              "name": "BI 3032950 intravenous (Part A)"
+            },
+            {
+              "name": "BI 3032950 subcutaneous (Part B)"
+            }
+          ]
+        },
+        "contactsLocationsModule": {
+          "locations": [
+            {
+              "country": "United States"
+            },
+            {
+              "country": "United States"
+            },
+            {
+              "country": "Belgium"
+            },
+            {
+              "country": "Belgium"
+            },
+            {
+              "country": "Czechia"
+            },
+            {
+              "country": "Czechia"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT07520461",
+          "briefTitle": "Microbiome-targeted Diet Therapy in Ulcerative Colitis"
+        },
+        "statusModule": {
+          "overallStatus": "RECRUITING",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-11-25"
+          }
+        },
+        "designModule": {
+          "phases": [
+            "NA"
+          ]
+        },
+        "armsInterventionsModule": {
+          "interventions": [
+            {
+              "name": "High Protein, High Fiber (HPHF) Diet"
+            }
+          ]
+        },
+        "contactsLocationsModule": {
+          "locations": [
+            {
+              "country": "United States"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT07017959",
+          "briefTitle": "Impact of a Human Origin Heat Inactivated Probiotic-Lactobacillus Paracasei D3.5 (LpD3.5) as Dietary Supplement on Gut Mucin and Intestinal Permeability in Adults With IBD"
+        },
+        "statusModule": {
+          "overallStatus": "RECRUITING",
+          "lastUpdatePostDateStruct": {
+            "date": "2026-11-25"
+          }
+        },
+        "designModule": {
+          "phases": [
+            "NA"
+          ]
+        },
+        "armsInterventionsModule": {
+          "interventions": [
+            {
+              "name": "LpD3.5 supplementation."
+            },
+            {
+              "name": "Placebo"
+            }
+          ]
+        },
+        "contactsLocationsModule": {
+          "locations": [
+            {
+              "country": "United States"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "nextPageToken": "ZVNj7o2Elu8o3lpySsCopL7umpOQJJxuYvig2fIelD6SuP08FCfCFfLV8tRM1CI"
+}

@@ -1,0 +1,375 @@
+{
+  "header": {
+    "type": "esummary",
+    "version": "0.3"
+  },
+  "result": {
+    "uids": [
+      "42745024",
+      "42361097",
+      "41966261"
+    ],
+    "42745024": {
+      "uid": "42745024",
+      "pubdate": "2026 Oct",
+      "epubdate": "2026 Sep 16",
+      "source": "Drugs",
+      "authors": [
+        {
+          "name": "Faggiani I",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Tuttle C",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Danese S",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Peyrin-Biroulet L",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Jairath V",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Sedano R",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Dotan I",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Panaccione R",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Ma C",
+          "authtype": "Author",
+          "clusterid": ""
+        }
+      ],
+      "lastauthor": "Ma C",
+      "title": "Antibiotic-Refractory Chronic Pouchitis After Ileal Pouch-Anal Anastomosis: Current and Emerging Therapeutic Strategies.",
+      "sorttitle": "antibiotic refractory chronic pouchitis after ileal pouch anal anastomosis current and emerging therapeutic strategies",
+      "volume": "86",
+      "issue": "10",
+      "pages": "1577-1597",
+      "lang": [
+        "eng"
+      ],
+      "nlmuniqueid": "7600076",
+      "issn": "0012-6667",
+      "essn": "1179-1950",
+      "pubtype": [
+        "Journal Article",
+        "Review"
+      ],
+      "recordstatus": "PubMed - indexed for MEDLINE",
+      "pubstatus": "256",
+      "articleids": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "42745024"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1007/s40265-026-02383-1"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "10.1007/s40265-026-02383-1"
+        }
+      ],
+      "history": [
+        {
+          "pubstatus": "received",
+          "date": "2026/06/27 00:00"
+        },
+        {
+          "pubstatus": "accepted",
+          "date": "2026/08/18 00:00"
+        },
+        {
+          "pubstatus": "medline",
+          "date": "2026/09/25 17:32"
+        },
+        {
+          "pubstatus": "pubmed",
+          "date": "2026/09/16 05:36"
+        },
+        {
+          "pubstatus": "entrez",
+          "date": "2026/09/16 02:51"
+        }
+      ],
+      "references": [],
+      "attributes": [
+        "Has Abstract"
+      ],
+      "pmcrefcount": "",
+      "fulljournalname": "Drugs",
+      "elocationid": "doi: 10.1007/s40265-026-02383-1",
+      "doctype": "citation",
+      "srccontriblist": [],
+      "booktitle": "",
+      "medium": "",
+      "edition": "",
+      "publisherlocation": "",
+      "publishername": "",
+      "srcdate": "",
+      "reportnumber": "",
+      "availablefromurl": "",
+      "locationlabel": "",
+      "doccontriblist": [],
+      "docdate": "",
+      "bookname": "",
+      "chapter": "",
+      "sortpubdate": "2026/10/01 00:00",
+      "sortfirstauthor": "Faggiani I",
+      "vernaculartitle": ""
+    },
+    "42361097": {
+      "uid": "42361097",
+      "pubdate": "2026 Oct 1",
+      "epubdate": "2026 Jun 25",
+      "source": "Curr Opin Pediatr",
+      "authors": [
+        {
+          "name": "Williams J",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Gurram B",
+          "authtype": "Author",
+          "clusterid": ""
+        }
+      ],
+      "lastauthor": "Gurram B",
+      "title": "Advanced therapies in management of pediatric inflammatory bowel disease.",
+      "sorttitle": "advanced therapies in management of pediatric inflammatory bowel disease",
+      "volume": "38",
+      "issue": "5",
+      "pages": "493-501",
+      "lang": [
+        "eng"
+      ],
+      "nlmuniqueid": "9000850",
+      "issn": "1040-8703",
+      "essn": "1531-698X",
+      "pubtype": [
+        "Journal Article",
+        "Review"
+      ],
+      "recordstatus": "PubMed - indexed for MEDLINE",
+      "pubstatus": "256",
+      "articleids": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "42361097"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1097/MOP.0000000000001592"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "00008480-990000000-00374"
+        }
+      ],
+      "history": [
+        {
+          "pubstatus": "medline",
+          "date": "2026/09/07 11:37"
+        },
+        {
+          "pubstatus": "pubmed",
+          "date": "2026/06/27 00:51"
+        },
+        {
+          "pubstatus": "entrez",
+          "date": "2026/06/26 13:54"
+        }
+      ],
+      "references": [],
+      "attributes": [
+        "Has Abstract"
+      ],
+      "pmcrefcount": "",
+      "fulljournalname": "Current opinion in pediatrics",
+      "elocationid": "doi: 10.1097/MOP.0000000000001592",
+      "doctype": "citation",
+      "srccontriblist": [],
+      "booktitle": "",
+      "medium": "",
+      "edition": "",
+      "publisherlocation": "",
+      "publishername": "",
+      "srcdate": "",
+      "reportnumber": "",
+      "availablefromurl": "",
+      "locationlabel": "",
+      "doccontriblist": [],
+      "docdate": "",
+      "bookname": "",
+      "chapter": "",
+      "sortpubdate": "2026/10/01 00:00",
+      "sortfirstauthor": "Williams J",
+      "vernaculartitle": ""
+    },
+    "41966261": {
+      "uid": "41966261",
+      "pubdate": "2026 Oct",
+      "epubdate": "2026 Apr 9",
+      "source": "Gastroenterol Hepatol",
+      "authors": [
+        {
+          "name": "Gimenez Villamil MP",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Bein MV",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Valverde DA",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Savio MC",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Araújo Molteni Moretti R",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Proença de Moraes T",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Quaresma AB",
+          "authtype": "Author",
+          "clusterid": ""
+        },
+        {
+          "name": "Kotze PG",
+          "authtype": "Author",
+          "clusterid": ""
+        }
+      ],
+      "lastauthor": "Kotze PG",
+      "title": "Population-based real-world adoption of advanced therapies for ulcerative colitis in Brazil: Trends and regional differences from a nationwide public healthcare database.",
+      "sorttitle": "population based real world adoption of advanced therapies for ulcerative colitis in brazil trends and regional differences from a nationwide public healthcare database",
+      "volume": "49",
+      "issue": "8",
+      "pages": "502762",
+      "lang": [
+        "eng",
+        "spa"
+      ],
+      "nlmuniqueid": "8406671",
+      "issn": "0210-5705",
+      "essn": "",
+      "pubtype": [
+        "Journal Article",
+        "Review"
+      ],
+      "recordstatus": "PubMed - indexed for MEDLINE",
+      "pubstatus": "256",
+      "articleids": [
+        {
+          "idtype": "pubmed",
+          "idtypen": 1,
+          "value": "41966261"
+        },
+        {
+          "idtype": "doi",
+          "idtypen": 3,
+          "value": "10.1016/j.gastrohep.2026.502762"
+        },
+        {
+          "idtype": "pii",
+          "idtypen": 4,
+          "value": "S0210-5705(26)00639-4"
+        }
+      ],
+      "history": [
+        {
+          "pubstatus": "received",
+          "date": "2025/12/14 00:00"
+        },
+        {
+          "pubstatus": "revised",
+          "date": "2026/03/26 00:00"
+        },
+        {
+          "pubstatus": "accepted",
+          "date": "2026/04/03 00:00"
+        },
+        {
+          "pubstatus": "medline",
+          "date": "2026/10/09 23:31"
+        },
+        {
+          "pubstatus": "pubmed",
+          "date": "2026/04/12 12:32"
+        },
+        {
+          "pubstatus": "entrez",
+          "date": "2026/04/12 10:28"
+        }
+      ],
+      "references": [],
+      "attributes": [
+        "Has Abstract"
+      ],
+      "pmcrefcount": "",
+      "fulljournalname": "Gastroenterologia y hepatologia",
+      "elocationid": "doi: 10.1016/j.gastrohep.2026.502762",
+      "doctype": "citation",
+      "srccontriblist": [],
+      "booktitle": "",
+      "medium": "",
+      "edition": "",
+      "publisherlocation": "",
+      "publishername": "",
+      "srcdate": "",
+      "reportnumber": "",
+      "availablefromurl": "",
+      "locationlabel": "",
+      "doccontriblist": [],
+      "docdate": "",
+      "bookname": "",
+      "chapter": "",
+      "sortpubdate": "2026/10/01 00:00",
+      "sortfirstauthor": "Gimenez Villamil MP",
+      "vernaculartitle": ""
+    }
+  }
+}

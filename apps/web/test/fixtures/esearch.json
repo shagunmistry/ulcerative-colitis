@@ -1,0 +1,23 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "205",
+    "retmax": "3",
+    "retstart": "0",
+    "idlist": [
+      "42745024",
+      "42361097",
+      "41966261"
+    ],
+    "translationset": [
+      {
+        "from": "vedolizumab",
+        "to": "\"vedolizumab\"[Supplementary Concept] OR \"vedolizumab\"[All Fields]"
+      }
+    ],
+    "querytranslation": "\"colitis, ulcerative\"[MeSH Terms] AND (\"vedolizumab\"[Supplementary Concept] OR \"vedolizumab\"[All Fields]) AND \"review\"[Publication Type]"
+  }
+}
