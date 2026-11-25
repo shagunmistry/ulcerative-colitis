@@ -1,10 +1,5 @@
-import { TOPICS, topicHref } from "@uc/evidence";
-
-function baseUrl() {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return process.env.NODE_ENV === "production" ? "https://ulcerativecolitis.org" : "http://localhost:3000";
-}
+import { LAST_CHECKED, TOPICS, topicHref } from "@uc/evidence";
+import { SITE_URL } from "../../lib";
 
 function escapeXml(value: string) {
   return value
@@ -16,8 +11,8 @@ function escapeXml(value: string) {
 }
 
 export function GET() {
-  const base = baseUrl();
-  const updated = new Date().toISOString();
+  const base = SITE_URL;
+  const updated = `${LAST_CHECKED}T00:00:00Z`;
 
   const entries = TOPICS.map((topic) => {
     const href = `${base}${topicHref(topic)}`;

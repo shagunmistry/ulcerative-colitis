@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { ServiceWorker } from "@/components/ServiceWorker";
 import { SmokeBackground } from "@/components/SmokeBackground";
 import { Providers } from "./providers";
+import { SITE_URL } from "@/lib";
 import "./globals.css";
 import "./print.css";
 
@@ -14,7 +15,7 @@ const display = Oswald({ subsets: ["latin"], variable: "--font-display", display
 const mono = Space_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", weight: ["400", "700"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ulcerativecolitis.org"),
+  metadataBase: new URL(SITE_URL),
   title: { default: "Understand ulcerative colitis", template: "%s, Ulcerative Colitis" },
   description:
     "Ulcerative colitis explained in plain language with sources: causes, medicines, other approaches and a 3D simulation.",
