@@ -30,8 +30,12 @@ describe("search", () => {
   });
 
   it("includes outside links with full addresses", () => {
-    const external = search("LIMUC").filter((h) => h.kind === "link");
+    const external = search("NICE").filter((h) => h.kind === "link");
     expect(external[0]!.href).toMatch(/^https:\/\//);
+  });
+
+  it("finds datasets and points at their library entry", () => {
+    expect(search("LIMUC")[0]).toMatchObject({ kind: "dataset", href: "/data#limuc" });
   });
 
   it.each(["urgent care", "emergency"])("finds urgent care advice for %j", (q) => {

@@ -14,7 +14,7 @@ export function SearchBox() {
     <div className="max-w-2xl">
       <form role="search" onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="q" className="slug">
-          Search topics and further reading
+          Search topics, datasets and further reading
         </label>
         <input
           id="q"
@@ -36,7 +36,7 @@ export function SearchBox() {
       <ul className="mt-2 divide-y divide-[var(--rule)]">
         {hits.map((hit) => (
           <li key={hit.href} className="py-4">
-            {hit.kind === "topic" ? (
+            {hit.href.startsWith("/") ? (
               <Link href={hit.href} className="display text-xl text-[var(--source)] underline-offset-4 hover:underline">
                 {hit.title}
               </Link>

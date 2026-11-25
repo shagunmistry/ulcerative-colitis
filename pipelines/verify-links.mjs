@@ -1,8 +1,10 @@
 // Requests every external address the site links to and lists those that fail.
+import { DATASETS, copyUrl } from "../packages/evidence/src/datasets.ts";
 import { LINKS } from "../packages/evidence/src/links.ts";
 import { SOURCES } from "../packages/evidence/src/sources.ts";
 
-const urls = [...new Set([...LINKS, ...SOURCES].map((x) => x.url).filter(Boolean))];
+const datasetUrls = DATASETS.flatMap((d) => [d.url, d.termsUrl, ...d.copies.map(copyUrl)]);
+const urls = [...new Set([...[...LINKS, ...SOURCES].map((x) => x.url), ...datasetUrls].filter(Boolean))];
 const failures = [];
 for (const url of urls) {
   try {

@@ -1,3 +1,4 @@
+import { DATASETS } from "./datasets";
 import { LINKS } from "./links";
 import { TOPICS, URGENT, topicHref } from "./topics";
 
@@ -5,7 +6,7 @@ export interface Hit {
   title: string;
   href: string;
   snippet: string;
-  kind: "topic" | "link";
+  kind: "topic" | "link" | "dataset";
 }
 
 /** Folds case, accents and common British spellings so either form matches. */
@@ -41,6 +42,11 @@ const INDEX = [
     hit: { title: l.title, href: l.url, snippet: `${l.publisher}, ${l.kind}`, kind: "link" as const },
     title: fold(l.title),
     body: fold(`${l.title} ${l.publisher} ${l.kind}`),
+  })),
+  ...DATASETS.map((d) => ({
+    hit: { title: d.title, href: `/data#${d.id}`, snippet: `${d.publisher}, dataset`, kind: "dataset" as const },
+    title: fold(d.title),
+    body: fold([d.title, d.publisher, "dataset", d.summary, ...d.types].join(" ")),
   })),
 ];
 

@@ -1,4 +1,4 @@
-import { LAST_CHECKED, LINKS } from "@uc/evidence";
+import { DATASETS, LAST_CHECKED } from "@uc/evidence";
 import Link from "next/link";
 import { External } from "@/components/External";
 import { LandingPreview } from "@/components/LandingPreview";
@@ -67,9 +67,9 @@ export default function Home() {
           <li>
             <External href={REPO_URL}>Source code on GitHub</External>
           </li>
-          {LINKS.filter((l) => l.kind === "dataset").map((l) => (
-            <li key={l.id}>
-              <External href={l.url}>{l.title}</External>
+          {DATASETS.map((d) => (
+            <li key={d.id}>
+              <External href={d.url}>{d.title}</External>
             </li>
           ))}
         </Path>

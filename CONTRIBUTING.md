@@ -13,11 +13,26 @@
 - Each topic (`topics.ts`, `content.ts`) needs a plain summary in short sentences, a
   caveat, the science, and sources.
 - Further reading (`links.ts`) is limited to public health bodies, professional
-  societies, established patient charities, registries and dataset hosts. No sellers or
-  drug company promotion. Run `pnpm verify:links` after adding one.
+  societies, established patient charities and registries. No sellers or drug company
+  promotion. Run `pnpm verify:links` after adding one.
 - State limits next to findings. Do not present early or small studies as settled.
 - Never compare drugs across separate trials.
 - Update `LAST_CHECKED` when you re-check statements.
+
+## Datasets
+
+- Datasets live in `packages/evidence/src/datasets.ts`. Add one only if it holds
+  ulcerative colitis or inflammatory bowel disease data from a public repository,
+  research programme or peer-reviewed release, and has a reachable terms page.
+- Take licence, access and size from the host's own page. If it does not state one,
+  write `Not stated` (access: `not-stated`). Never infer it. Leave out any dataset
+  you cannot check.
+- Note in `accessNote` any conditions or conflicting terms you find.
+- A copy on Hugging Face or Kaggle must hold the data, and you must check it by hand.
+  Mark it `original` only when the host or the paper names that copy as the release.
+  Licence and access always come from the original.
+- Set `checkedOn` to the day you read the pages, and run `pnpm verify:links`.
+- Link to data; never add dataset files or abstracts to this repository.
 
 ## The model
 

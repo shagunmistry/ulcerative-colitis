@@ -1,8 +1,12 @@
+// The extension lets `pnpm verify:links` run this file directly with Node.
+import { DATASETS } from "./datasets.ts";
+
 export interface Link {
   id: string;
   title: string;
   publisher: string;
   url: string;
+  /** "dataset" entries come from datasets.ts */
   kind: "patient" | "guideline" | "registry" | "dataset";
   /** topic ids this page helps with */
   topics: string[];
@@ -34,8 +38,18 @@ export const LINKS: Link[] = [
   l("nccih-probiotics", "patient", "NCCIH", "Probiotics: usefulness and safety", "https://www.nccih.nih.gov/health/probiotics-usefulness-and-safety", ["probiotics"]),
   l("nccih-turmeric", "patient", "NCCIH", "Turmeric: usefulness and safety", "https://www.nccih.nih.gov/health/turmeric", ["curcumin"]),
   l("clinicaltrials", "registry", "ClinicalTrials.gov", "Registered ulcerative colitis trials", "https://clinicaltrials.gov/search?cond=Ulcerative%20Colitis", [...MEDICINES, "curcumin", "probiotics", "fmt", "diet"]),
-  l("limuc", "dataset", "Zenodo", "LIMUC: scored colonoscopy images", "https://zenodo.org/records/5827695", ["data"]),
-  l("ibdmdb", "dataset", "IBDMDB", "Inflammatory bowel disease multi-omics results and data", "https://www.ibdmdb.org/results", ["data", "butyrate"]),
 ];
 
-export const linksFor = (topicId: string) => LINKS.filter((link) => link.topics.includes(topicId));
+const DATASET_LINKS: Link[] = DATASETS.map(({ id, title, publisher, url, topics, checkedOn }) => ({
+  id,
+  kind: "dataset",
+  title,
+  publisher,
+  url,
+  topics,
+  checkedOn,
+}));
+
+/** Further reading for a topic: outside pages, then datasets. */
+export const linksFor = (topicId: string) =>
+  [...LINKS, ...DATASET_LINKS].filter((link) => link.topics.includes(topicId));
