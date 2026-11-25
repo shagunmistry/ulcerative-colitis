@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description:
     "Ulcerative colitis explained in plain language with sources: causes, medicines, other approaches and a 3D simulation.",
   manifest: "/manifest.json",
+  alternates: {
+    types: { "application/atom+xml": "/feed.xml" },
+  },
   openGraph: {
     type: "website",
     siteName: "Ulcerative Colitis",
