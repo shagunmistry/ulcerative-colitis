@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
+import { ogTitle } from "../../og-pages";
 
 export const runtime = "edge";
 
 export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") || "Understand ulcerative colitis";
-  const badge = searchParams.get("badge");
+  const title = ogTitle(searchParams.get("page"));
 
   return new ImageResponse(
     (
@@ -22,7 +22,6 @@ export function GET(request: Request) {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-          {badge && <div style={{ fontSize: 24, color: "#345530" }}>{badge}</div>}
           <div style={{ fontSize: 56, fontWeight: 700, color: "#1a1310", maxWidth: 900, lineHeight: 1.1 }}>{title}</div>
         </div>
         <div style={{ fontSize: 28, color: "#971b12" }}>

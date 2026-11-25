@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { Page } from "@/components/Page";
 import { Contents, TopicList } from "@/components/Topic";
 import { TreatmentsSwitch } from "@/components/TreatmentsSwitch";
+import { ogImage } from "@/og-pages";
 
 export const metadata: Metadata = {
   title: "Other approaches",
   openGraph: {
     title: "Supplements, microbes and diet",
-    images: [{ url: "/og?title=Supplements%2C%20microbes%20and%20diet", width: 1200, height: 630 }],
+    images: [ogImage("other")],
   },
 };
 

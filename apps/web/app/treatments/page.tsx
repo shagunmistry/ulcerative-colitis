@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { Cite, Page } from "@/components/Page";
 import { Contents, TopicList } from "@/components/Topic";
 import { TreatmentsSwitch } from "@/components/TreatmentsSwitch";
+import { ogImage } from "@/og-pages";
 
 export const metadata: Metadata = {
   title: "Medicines",
   openGraph: {
     title: "Medicines for ulcerative colitis",
-    images: [{ url: "/og?title=Medicines%20for%20ulcerative%20colitis", width: 1200, height: 630 }],
+    images: [ogImage("medicines")],
   },
 };
 

@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { Page } from "@/components/Page";
 import { Contents, TopicList } from "@/components/Topic";
 import { UrgentCare } from "@/components/UrgentCare";
+import { ogImage } from "@/og-pages";
 
 export const metadata: Metadata = {
   title: "Understand",
   openGraph: {
     title: "Understand ulcerative colitis",
-    images: [{ url: "/og?title=Understand%20ulcerative%20colitis", width: 1200, height: 630 }],
+    images: [ogImage("understand")],
   },
 };
 

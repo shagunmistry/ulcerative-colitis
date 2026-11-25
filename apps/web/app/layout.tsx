@@ -7,6 +7,7 @@ import { ServiceWorker } from "@/components/ServiceWorker";
 import { SmokeBackground } from "@/components/SmokeBackground";
 import { Providers } from "./providers";
 import { SITE_URL } from "@/lib";
+import { ogImage } from "@/og-pages";
 import "./globals.css";
 import "./print.css";
 
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: "Understand ulcerative colitis",
     description:
       "Ulcerative colitis explained in plain language with sources: causes, medicines, other approaches and a 3D simulation.",
-    images: [{ url: "/og?title=Understand%20ulcerative%20colitis", width: 1200, height: 630 }],
+    images: [ogImage("understand")],
   },
   twitter: { card: "summary_large_image" },
 };
