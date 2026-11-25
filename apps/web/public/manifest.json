@@ -1,0 +1,11 @@
+{
+  "name": "Ulcerative Colitis",
+  "short_name": "UC Guide",
+  "description": "Understand ulcerative colitis — plain language, sources, and a 3D simulation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3e4cf",
+  "theme_color": "#f3e4cf",
+  "//": "Add icons (for example 192x192 and 512x512 PNG files) later for a richer install experience.",
+  "icons": []
+}

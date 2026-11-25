@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Oswald, Space_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { ServiceWorker } from "@/components/ServiceWorker";
 import { SmokeBackground } from "@/components/SmokeBackground";
 import { Providers } from "./providers";
 import "./globals.css";
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   title: { default: "Understand ulcerative colitis", template: "%s, Ulcerative Colitis" },
   description:
     "Ulcerative colitis explained in plain language with sources: causes, medicines, other approaches and a 3D simulation.",
+  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {
@@ -33,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="flex min-h-full flex-col">
         <Providers>
+          <ServiceWorker />
           <SmokeBackground />
           <div className="relative z-10 flex min-h-screen w-full flex-col">
             <Header />
