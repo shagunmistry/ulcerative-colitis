@@ -1,4 +1,8 @@
-const CACHE = "uc-v1";
+/*
+ * Offline support. Medical text must never go stale, so the network always comes
+ * first and saved copies are only used when it cannot be reached.
+ */
+const CACHE = "uc-v2";
 
 const SHELL = [
   "/",
@@ -30,35 +34,37 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(CACHE);
-  const cached = await cache.match(request);
-  const network = fetch(request)
-    .then((response) => {
-      if (response && response.ok) cache.put(request, response.clone());
-      return response;
-    })
-    .catch(() => cached);
-  return cached || network;
+async function save(event, cache, response) {
+  // A full cache must not break the page.
+  if (response.ok) event.waitUntil(cache.put(event.request, response.clone()).catch(() => {}));
 }
 
-async function cacheFirst(request) {
+async function networkFirst(event) {
   const cache = await caches.open(CACHE);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-  const response = await fetch(request);
-  if (response && response.ok) cache.put(request, response.clone());
+  try {
+    const response = await fetch(event.request);
+    await save(event, cache, response);
+    return response;
+  } catch (error) {
+    const saved = await cache.match(event.request);
+    if (saved) return saved;
+    throw error;
+  }
+}
+
+/** Only for build files, whose names change whenever their content does. */
+async function cacheFirst(event) {
+  const cache = await caches.open(CACHE);
+  const saved = await cache.match(event.request);
+  if (saved) return saved;
+  const response = await fetch(event.request);
+  await save(event, cache, response);
   return response;
 }
 
 self.addEventListener("fetch", (event) => {
-  const request = event.request;
-  if (request.method !== "GET") return;
-
-  if (request.mode === "navigate") {
-    event.respondWith(staleWhileRevalidate(request));
-    return;
-  }
-
-  event.respondWith(cacheFirst(request));
+  if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin || url.pathname.startsWith("/_vercel/")) return;
+  event.respondWith(url.pathname.startsWith("/_next/static/") ? cacheFirst(event) : networkFirst(event));
 });
