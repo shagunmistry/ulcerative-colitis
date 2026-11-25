@@ -16,11 +16,12 @@ interface Study {
 
 const OPERATOR = /^(AND|OR|NOT)$/;
 const KEYWORD = /^(ALL|AREA|COVERAGE|DISTANCE|EXPANSION|MAX|MIN|MISSING|RANGE|SEARCH|TILT)$/;
-const isOperand = (word = "") => /^[\p{L}\p{N}]/u.test(word) && !OPERATOR.test(word);
+const isOperand = (word = "") => /[\p{L}\p{N}]/u.test(word) && !OPERATOR.test(word);
 
 /**
- * ClinicalTrials.gov rejects a query with a stray operator or keyword. It reads them as
- * ordinary words in lower case, so only an operator between two words is left as typed.
+ * ClinicalTrials.gov rejects a query with a stray operator or keyword, and reads them as
+ * ordinary words in lower case. An operator is left as typed only where it can be one:
+ * `NOT` before a word, and `AND` or `OR` between a word and a word or `NOT` word.
  */
 const asQuery = (term: string) =>
   term
@@ -28,8 +29,10 @@ const asQuery = (term: string) =>
     .split(/[ ,]+/)
     .filter(Boolean)
     .map((word, i, words) => {
-      const stray = OPERATOR.test(word) && !(isOperand(words[i - 1]) && isOperand(words[i + 1]));
-      return stray || KEYWORD.test(word) ? word.toLowerCase() : word;
+      const excludes = (at: number) => words[at] === "NOT" && isOperand(words[at + 1]);
+      const works =
+        word === "NOT" ? excludes(i) : isOperand(words[i - 1]) && (isOperand(words[i + 1]) || excludes(i + 1));
+      return (OPERATOR.test(word) && !works) || KEYWORD.test(word) ? word.toLowerCase() : word;
     })
     .join(" ");
 

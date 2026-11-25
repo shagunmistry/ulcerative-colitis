@@ -27,6 +27,9 @@ describe("cleanTerm", () => {
     ["  ", ""],
     ["{a}\\ <b> #1 “c” （d）", "a b 1 c d"],
     ["  diet \n\t stress ", "diet stress"],
+    ["diet\u200Bstress", "diet stress"],
+    ["\uFEFFdiet\u0000\u00AD", "diet"],
+    ["\u200B\u2060", ""],
   ])("cleans %j", (i, o) => expect(cleanTerm(i)).toBe(o));
 
   it("caps the length at 100 characters", () => {
@@ -152,6 +155,15 @@ describe("searchTrials", () => {
     ["OR, diet", "or diet"],
     ["diet,NOT", "diet not"],
     ["diet OR stress NOT smoking", "diet OR stress NOT smoking"],
+    ["NOT smoking", "NOT smoking"],
+    ["diet AND NOT 'smoking'", "diet AND NOT 'smoking'"],
+    ["'diet' OR -smoking", "'diet' OR -smoking"],
+    ["diet AND NOT smoking", "diet AND NOT smoking"],
+    ["diet OR NOT smoking", "diet OR NOT smoking"],
+    ["OR NOT smoking", "or NOT smoking"],
+    ["NOT NOT smoking", "not NOT smoking"],
+    ["diet AND NOT", "diet and not"],
+    ["diet NOT AND smoking", "diet not and smoking"],
   ])("sends %j as %j", async (term, sent) => {
     const { f, urls } = fake(trials);
     await searchTrials({ term, status: "ALL" }, signal(), f);

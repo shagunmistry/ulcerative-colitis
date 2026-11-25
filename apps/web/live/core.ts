@@ -22,6 +22,8 @@ const TIMEOUT_MS = 15_000;
 export const cleanTerm = (term: string) =>
   term
     .normalize("NFKC")
+    // Control and invisible characters, such as a pasted zero-width space.
+    .replace(/[\p{Cc}\p{Cf}]/gu, " ")
     .replace(/[()[\]{}<>"\\#“”„«»]/g, " ")
     .replace(/\s+/g, " ")
     .trim()
