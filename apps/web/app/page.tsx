@@ -64,6 +64,7 @@ export default function Home() {
         </Path>
         <Path title="Work with the data" text="Inspect the model, read the code, find open datasets.">
           <Go href="/data">Data library</Go>
+          <Go href="/data/search">Live search of trials and papers</Go>
           <Go href="/simulator/model">How the model works</Go>
           <li>
             <External href={REPO_URL}>Source code on GitHub</External>

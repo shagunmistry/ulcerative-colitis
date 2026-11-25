@@ -48,7 +48,7 @@ describe("searchHub", () => {
         direction: "-1",
         limit: "50",
       });
-    for (const init of inits) expect(Object.keys(init ?? {})).toEqual(["signal"]);
+    for (const init of inits) expect(Object.keys(init ?? {})).toEqual(["signal", "cache"]);
   });
 
   it("only trims the term, then encodes it", async () => {

@@ -36,6 +36,9 @@ const asQuery = (term: string) =>
     })
     .join(" ");
 
+/** The words sent to ClinicalTrials.gov for a typed term. */
+export const trialQuery = (term: string) => asQuery(cleanTerm(term));
+
 /** `ACTIVE_NOT_RECRUITING` and `EARLY_PHASE1` as a reader would write them. */
 function words(code: string) {
   if (code === "NA") return "Not applicable";
@@ -74,7 +77,7 @@ export async function searchTrials(
   signal: AbortSignal,
   f?: Fetch,
 ): Promise<Batch> {
-  const term = asQuery(cleanTerm(q.term));
+  const term = trialQuery(q.term);
   const params = new URLSearchParams({
     "query.cond": "ulcerative colitis",
     ...(term && { "query.term": term }),

@@ -1,6 +1,7 @@
 import { DATASETS, LINKS, keyPapers } from "@uc/evidence";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DataSwitch } from "@/components/DataSwitch";
 import { DatasetList } from "@/components/DatasetList";
 import { External } from "@/components/External";
 import { Cite, Page } from "@/components/Page";
@@ -15,6 +16,7 @@ export default function Data() {
       title="Data library"
       intro="Datasets, research papers and registries about ulcerative colitis and inflammatory bowel disease. We link to them and do not host the data. Read each source's terms before you use it."
     >
+      <DataSwitch current="/data" />
       <section>
         <h2 className={heading}>Datasets</h2>
         <p className="mt-2 max-w-prose text-sm text-[var(--ink-soft)]">

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { External } from "@/components/External";
 import { Page } from "@/components/Page";
 import { REPO_URL } from "@/lib";
@@ -9,7 +10,7 @@ const h2 = "display mt-8 text-2xl";
 
 export default function Privacy() {
   return (
-    <Page title="Privacy" intro="This site has no accounts, no forms that send data, and does not ask for health information.">
+    <Page title="Privacy" intro="This site has no accounts and does not ask for health information. Only live search sends what you type anywhere.">
       <div className="max-w-prose space-y-3">
         <h2 className="display text-2xl">Visitor statistics</h2>
         <p>
@@ -25,12 +26,30 @@ export default function Privacy() {
         </p>
         <h2 className={h2}>What stays on your device</h2>
         <p>
-          What you type into search and the settings you choose in the simulator stay in your browser&apos;s memory and
+          What you type into the site&apos;s Search page and the settings you choose in the simulator stay in your browser&apos;s memory and
           disappear when you leave. Your light or dark theme choice is saved in your browser.
         </p>
         <p>
           So that the site can work offline, your browser also saves copies of pages and files from this site on your
           device. Clearing this site&apos;s data in your browser removes them.
+        </p>
+        <h2 className={h2}>Live search</h2>
+        <p>
+          <Link href="/data/search" className="text-[var(--source)] underline underline-offset-4">
+            Live search
+          </Link>{" "}
+          is different. When you press Search, a common search or Show more there, your browser sends the term, the
+          filter you chose and your request, including your IP address, to the US National Library of Medicine (trials
+          and papers) or to Hugging Face (datasets and models). We do not put the term in our page address, save it, or
+          send it to our servers or analytics.
+        </p>
+        <p>
+          <External href="https://www.nlm.nih.gov/web_policies.html#privacy_security">
+            National Library of Medicine privacy policy
+          </External>
+        </p>
+        <p>
+          <External href="https://huggingface.co/privacy">Hugging Face privacy policy</External>
         </p>
         <h2 className={h2}>Hosting and other sites</h2>
         <p>

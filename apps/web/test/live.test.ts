@@ -69,6 +69,12 @@ describe("getJson", () => {
     expect(given?.aborted).toBe(true);
   });
 
+  it("keeps the address, which holds the term, out of the browser's saved copies", async () => {
+    let init: RequestInit | undefined;
+    await getJson("https://x", signal(), async (_, given) => ((init = given), new Response("{}")));
+    expect(init?.cache).toBe("no-store");
+  });
+
   it("stops when the caller cancels", async () => {
     const caller = new AbortController();
     let given: AbortSignal | undefined;

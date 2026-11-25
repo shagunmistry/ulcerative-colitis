@@ -42,7 +42,8 @@ export async function getJson(url: string, signal: AbortSignal, f: Fetch = fetch
   signal.addEventListener("abort", cancel);
   const timer = setTimeout(() => stop.abort(new Error("The service did not answer")), TIMEOUT_MS);
   const read = async (): Promise<unknown> => {
-    const response = await f(url, { signal: stop.signal });
+    // The address holds the term, so the browser is told not to keep a copy.
+    const response = await f(url, { signal: stop.signal, cache: "no-store" });
     if (!response.ok) throw new Error(`The service answered ${response.status}`);
     return response.json();
   };

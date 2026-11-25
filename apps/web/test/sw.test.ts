@@ -113,10 +113,11 @@ describe("service worker", () => {
   it("saves the data library for offline use, without needing its JSON copy", async () => {
     const shell = await start().install();
     expect(shell).toContain("/data");
+    expect(shell).toContain("/data/search");
     expect(shell).not.toContain("/data/datasets.json");
   });
 
-  it.each(["uc-v1", "uc-v2"])("deletes the old cache %s", async (name) => {
+  it.each(["uc-v1", "uc-v2", "uc-v3"])("deletes the old cache %s", async (name) => {
     const sw = start();
     sw.stores.set(name, new Map());
     await sw.activate();

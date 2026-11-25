@@ -51,6 +51,10 @@ function toResult(id: string, s: Summary): Result {
   };
 }
 
+/** The query PubMed receives: an already cleaned term, kept within ulcerative colitis. */
+export const paperQuery = (term: string, kind: PaperKind) =>
+  `"colitis, ulcerative"[MeSH Terms]${term && ` AND (${term})`}${KINDS[kind]}`;
+
 async function ask(script: string, params: Record<string, string>, signal: AbortSignal, f?: Fetch) {
   const query = new URLSearchParams({ db: "pubmed", retmode: "json", tool: "ulcerative-colitis-web", ...params });
   const body = (await getJson(`${API}/${script}.fcgi?${query}`, signal, f)) as Body | null;
@@ -72,7 +76,7 @@ export async function searchPapers(
         retmax: String(PAGE),
         sort: "pub_date",
         ...(q.next && { retstart: q.next }),
-        term: `"colitis, ulcerative"[MeSH Terms]${term && ` AND (${term})`}${KINDS[q.kind]}`,
+        term: paperQuery(term, q.kind),
       },
       signal,
       f,
