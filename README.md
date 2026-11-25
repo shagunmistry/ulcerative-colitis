@@ -17,22 +17,45 @@ pnpm test
 pnpm typecheck
 pnpm build
 pnpm verify:evidence  # checks cited titles and figures against PubMed (needs network)
-pnpm verify:links     # checks that web sources and further reading still respond
+pnpm verify:links     # checks that cited sources, further reading and dataset addresses respond (needs network)
 ```
+
+`verify:links` does not check the fixed terms and privacy links written into the pages.
+
+## Data pages
+
+| Address | What it does |
+|---|---|
+| `/data` | Library of checked datasets, with licence, access, citation and copies elsewhere; key papers; registries |
+| `/data/datasets.json` | The same dataset list, for scripts |
+| `/data/search` | Live search of ClinicalTrials.gov (trials), PubMed (papers) and Hugging Face (datasets and models) |
+
+How data is handled:
+
+- We link to datasets and do not host or copy them. A detail the host does not give is
+  shown as `Not stated`. See [CONTRIBUTING](CONTRIBUTING.md#datasets) to add one.
+- Live search runs in the visitor's browser. Nothing is sent until they press Search,
+  a common search or Show more. The term then goes with their request, including their
+  IP address, to the US National Library of Medicine or to Hugging Face. Our code does
+  not save it or send it to our servers or analytics. No API keys are needed.
+- Trial and paper searches are limited to ulcerative colitis. Hugging Face matches
+  names only, so its results cannot be. Results are not reviewed by us.
+- Live search needs a connection; the pages themselves also work offline once saved.
 
 ## Layout
 
 | Path | What it holds |
 |---|---|
-| `apps/web` | Next.js site, including the data library at `/data` |
+| `apps/web` | Next.js site; live search clients are in `apps/web/live` |
 | `packages/sim` | The disease model |
 | `packages/viz3d` | Colon anatomy logic and the 3D scene |
 | `packages/evidence` | Sources, topics, trial figures, datasets, further reading and search |
 | `pipelines` | Scripts that check or fetch data |
 | `docs` | Design notes |
 
-Planned, not yet built: `ml/` (Python training, linked to Hugging Face and Kaggle),
-a research and trials hub (stage 2) and a model lab (stage 3). See `docs/superpowers`.
+The data library and live search make up stage 2, research and trials. Planned, not
+yet built: a model lab (stage 3), including `ml/` (Python training, linked to Hugging
+Face and Kaggle). See `docs/superpowers`.
 
 ## Deploying
 
