@@ -17,7 +17,8 @@ function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const next = resolvedTheme === "light" ? "dark" : "light";
+  // Until mounted, match the server: React would not correct a label that differed on hydration.
+  const next = mounted && resolvedTheme === "light" ? "dark" : "light";
   return (
     <button className="button w-16" onClick={() => setTheme(next)} aria-label={`Switch to ${next} theme`}>
       {mounted ? (next === "light" ? "Light" : "Dark") : " "}
