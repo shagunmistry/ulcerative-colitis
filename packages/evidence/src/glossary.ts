@@ -1,20 +1,50 @@
-/** One-sentence, plain-language definitions for terms used across the site. */
-export const GLOSSARY: Record<string, string> = {
-  anaemia: "A shortage of red blood cells, which can cause tiredness and weakness.",
-  biopsy: "A tiny sample of tissue taken to examine under a microscope.",
-  colonoscopy: "A camera test that looks inside the whole large bowel.",
-  corticosteroid: "A medicine that dampens the immune system, used short-term for flares.",
-  endoscopy: "A procedure using a thin tube with a camera to look inside the body.",
-  flare: "A period when symptoms return or get worse.",
-  "immune system": "The body's defence against infection and injury.",
-  inflammation: "The body's response to injury or irritation, causing swelling, heat, and pain.",
-  integrin: "A protein on immune cells that helps them stick to and enter tissues.",
-  lymphocyte: "A type of white blood cell that helps direct the immune response.",
-  placebo: "A harmless substance with no medical effect, used as a comparison in trials.",
-  remission: "A period when symptoms are gone or very mild.",
-  sigmoidoscopy: "A camera test that looks inside the lower part of the large bowel.",
-  tenesmus: "The feeling that you need to pass stool when the bowel may be empty.",
-  "5-ASA": "Aminosalicylates: medicines that calm inflammation in the bowel lining.",
-  TNF: "A signal that drives inflammation; targeted by some biologic medicines.",
-  JAK: "Enzymes inside cells that relay immune signals; targeted by some tablet medicines.",
+export interface Definition {
+  /** one plain sentence, saying no more than the source does */
+  definition: string;
+  sourceId: string;
+}
+
+const d = (sourceId: string, definition: string): Definition => ({ sourceId, definition });
+
+export const GLOSSARY: Record<string, Definition> = {
+  anaemia: d("niddk-definition", "Having fewer red blood cells than normal."),
+  biopsy: d("mp-biopsy", "A procedure that removes cells or tissue from the body to examine them."),
+  colonoscopy: d("niddk-colonoscopy", "A test using a flexible tube with a camera to look inside the large bowel."),
+  corticosteroid: d("niddk-treatment", "A type of steroid medicine, used for moderate to severe ulcerative colitis."),
+  endoscopy: d("mp-endoscopy", "A procedure that lets a doctor look inside the body."),
+  flare: d("niddk-definition", "A time when you have symptoms."),
+  "immune system": d("mp-immune", "A network of cells, tissues and organs that defends the body."),
+  inflammation: d("mp-immune-response", "The response that occurs when tissues are injured, for example by germs or toxins."),
+  integrin: d("mesh-integrins", "One of a family of proteins that sit in the outer membrane of cells."),
+  lymphocyte: d("mp-immune-response", "A type of white blood cell. There are B and T lymphocytes."),
+  placebo: d("nccih-placebo", "An inactive substance that looks like the treatment being tested."),
+  remission: d("niddk-definition", "A time when symptoms disappear."),
+  sigmoidoscopy: d("niddk-sigmoidoscopy", "A test using a flexible tube with a camera to look inside the rectum and lower colon."),
+  tenesmus: d("niddk-symptoms", "A constant urge to have a bowel movement, even though the bowel may be empty."),
+  "5-ASA": d("mp-mesalamine", "Another name for mesalazine, an anti-inflammatory medicine."),
+  JAK: d("mp-jak3", "Short for Janus kinase, a protein that helps pass signals inside cells."),
 };
+
+const TERMS = new Map(Object.keys(GLOSSARY).map((term) => [term.toLowerCase(), term]));
+
+// Longest first, so a phrase wins over a word inside it.
+const PATTERN = new RegExp(
+  `\\b(${[...TERMS.keys()].sort((a, b) => b.length - a.length).join("|")})\\b`,
+  "gi",
+);
+
+/** Splits text into plain strings and the defined terms found in it. */
+export function splitTerms(text: string): (string | { text: string; term: string })[] {
+  return text
+    .split(PATTERN)
+    .map((part, index) => (index % 2 === 1 ? { text: part, term: TERMS.get(part.toLowerCase())! } : part));
+}
+
+/** Sources behind every definition that appears in these texts. */
+export const definitionSources = (texts: string[]) => [
+  ...new Set(
+    texts
+      .flatMap(splitTerms)
+      .flatMap((part) => (typeof part === "string" ? [] : [GLOSSARY[part.term]!.sourceId])),
+  ),
+];

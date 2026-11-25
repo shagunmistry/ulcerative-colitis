@@ -3,7 +3,15 @@
 import { useEffect, useId, useRef, useState } from "react";
 
 /** Wraps a term and shows its definition on hover, tap or keyboard focus. */
-export function Glossary({ term, children }: { term: string; children: React.ReactNode }) {
+export function Glossary({
+  definition,
+  source,
+  children,
+}: {
+  definition: string;
+  source: string;
+  children: React.ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const id = useId();
@@ -53,7 +61,8 @@ export function Glossary({ term, children }: { term: string; children: React.Rea
           role="tooltip"
           className="absolute bottom-full left-1/2 z-50 mb-2 w-max max-w-[16rem] -translate-x-1/2 border border-[var(--rule)] bg-[var(--paper-deep)] px-3 py-2 text-left text-sm font-normal leading-snug text-[var(--ink)] shadow-lg"
         >
-          {term}
+          {definition}
+          <span className="mt-1 block text-xs text-[var(--source)]">Source: {source}</span>
         </span>
       )}
     </span>

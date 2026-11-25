@@ -6,7 +6,8 @@ export interface Source {
   url?: string;
   title: string;
   journal: string;
-  year: number;
+  /** absent when a page shows no date */
+  year?: number;
 }
 
 const s = (id: string, pmid: string, year: number, journal: string, title: string): Source => ({
@@ -17,7 +18,7 @@ const s = (id: string, pmid: string, year: number, journal: string, title: strin
   title,
 });
 
-const web = (id: string, url: string, year: number, journal: string, title: string): Source => ({
+const web = (id: string, url: string, year: number | undefined, journal: string, title: string): Source => ({
   id,
   url,
   year,
@@ -27,6 +28,9 @@ const web = (id: string, url: string, year: number, journal: string, title: stri
 
 const NIDDK = "https://www.niddk.nih.gov/health-information/digestive-diseases/ulcerative-colitis";
 const NIDDK_NAME = "National Institute of Diabetes and Digestive and Kidney Diseases";
+const NIDDK_TESTS = "https://www.niddk.nih.gov/health-information/diagnostic-tests";
+const MEDLINEPLUS = "https://medlineplus.gov";
+const NLM = "MedlinePlus, National Library of Medicine";
 
 export const SOURCES: Source[] = [
   // Public health pages
@@ -34,6 +38,17 @@ export const SOURCES: Source[] = [
   web("niddk-symptoms", `${NIDDK}/symptoms-causes`, 2020, NIDDK_NAME, "Symptoms & Causes of Ulcerative Colitis"),
   web("niddk-diagnosis", `${NIDDK}/diagnosis`, 2020, NIDDK_NAME, "Diagnosis of Ulcerative Colitis"),
   web("niddk-treatment", `${NIDDK}/treatment`, 2020, NIDDK_NAME, "Treatment for Ulcerative Colitis"),
+  // Definitions used in the glossary
+  web("niddk-colonoscopy", `${NIDDK_TESTS}/colonoscopy`, 2023, NIDDK_NAME, "Colonoscopy"),
+  web("niddk-sigmoidoscopy", `${NIDDK_TESTS}/flexible-sigmoidoscopy`, 2024, NIDDK_NAME, "Flexible Sigmoidoscopy"),
+  web("mp-biopsy", `${MEDLINEPLUS}/biopsy.html`, 2025, NLM, "Biopsy"),
+  web("mp-endoscopy", `${MEDLINEPLUS}/endoscopy.html`, 2024, NLM, "Endoscopy"),
+  web("mp-immune", `${MEDLINEPLUS}/immunesystemanddisorders.html`, 2023, NLM, "Immune System and Disorders"),
+  web("mp-immune-response", `${MEDLINEPLUS}/ency/article/000821.htm`, 2026, NLM, "Immune response"),
+  web("mp-mesalamine", `${MEDLINEPLUS}/druginfo/meds/a688021.html`, 2024, NLM, "Mesalamine"),
+  web("mp-jak3", `${MEDLINEPLUS}/genetics/gene/jak3/`, 2017, NLM, "JAK3 gene"),
+  web("mesh-integrins", "https://www.ncbi.nlm.nih.gov/mesh/?term=integrins", undefined, "Medical Subject Headings, National Library of Medicine", "Integrins"),
+  web("nccih-placebo", "https://www.nccih.nih.gov/health/placebo-effect", 2020, "National Center for Complementary and Integrative Health", "Placebo Effect"),
   web("nhs-uc", "https://www.nhs.uk/conditions/ulcerative-colitis/", 2026, "NHS", "Ulcerative colitis"),
 
   // Guidelines and overviews

@@ -7,6 +7,8 @@
 - Put each quoted number in the item's `figures` (or the trial's `quoted`) and run
   `pnpm verify:evidence`. It confirms the number appears in the abstract. It cannot
   confirm that the sentence around it is a fair reading, so a reviewer must.
+- Glossary definitions (`glossary.ts`) need a source that defines the term. Leave a
+  term out if none can be found.
 - Numbers taken from web pages are not checked automatically. Check them by hand.
 - Each topic (`topics.ts`, `content.ts`) needs a plain summary in short sentences, a
   caveat, the science, and sources.

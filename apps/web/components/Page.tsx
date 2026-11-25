@@ -38,7 +38,12 @@ export function Cite({ ids }: { ids: string[] }) {
             <External href={sourceUrl(source)}>{source.title}</External>
             <span className="text-[var(--ink-soft)]">
               {" "}
-              {source.journal}, <span className="timecode">{source.year}</span>
+              {source.journal}
+              {source.year && (
+                <>
+                  , <span className="timecode">{source.year}</span>
+                </>
+              )}
             </span>
           </li>
         );
