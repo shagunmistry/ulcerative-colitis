@@ -28,6 +28,10 @@ export default function Privacy() {
           What you type into search and the settings you choose in the simulator stay in your browser&apos;s memory and
           disappear when you leave. Your light or dark theme choice is saved in your browser.
         </p>
+        <p>
+          So that the site can work offline, your browser also saves copies of pages and files from this site on your
+          device. Clearing this site&apos;s data in your browser removes them.
+        </p>
         <h2 className={h2}>Hosting and other sites</h2>
         <p>
           The site is hosted by Vercel, which processes requests in order to serve pages. Links marked external lead to
@@ -35,10 +39,10 @@ export default function Privacy() {
         </p>
         <h2 className={h2}>Contact</h2>
         <p>
-          Open an issue on GitHub. Issues are public, so do not include personal or health details.{" "}
+          Open an issue on GitHub, for example with the report link under a topic. Issues are public, so do not include personal or health details.{" "}
           <External href={`${REPO_URL}/issues`}>GitHub issues</External>
         </p>
-        <p className="timecode text-sm text-[var(--ink-soft)]">Updated 2026-11-24</p>
+        <p className="timecode text-sm text-[var(--ink-soft)]">Updated 2026-11-25</p>
       </div>
     </Page>
   );

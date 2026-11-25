@@ -7,9 +7,9 @@ import {
   type Topic as TopicData,
 } from "@uc/evidence";
 import { External } from "./External";
-import { Feedback } from "./Feedback";
 import { Glossary } from "./Glossary";
 import { Cite } from "./Page";
+import { reportUrl } from "../lib";
 
 const summary = "slug cursor-pointer py-2 text-[var(--ink-soft)] hover:text-[var(--source)]";
 
@@ -71,7 +71,10 @@ export function Topic({ topic }: { topic: TopicData }) {
             )}
           </div>
         </details>
-        <Feedback topicId={topic.id} />
+        <p className="mt-4 text-sm text-[var(--ink-soft)]">
+          <External href={reportUrl(topic)}>Report a problem with this topic</External>. Reports on GitHub are public, so
+          leave out health details.
+        </p>
       </div>
     </article>
   );
