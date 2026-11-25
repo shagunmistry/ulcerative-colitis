@@ -23,14 +23,17 @@
 
 - Datasets live in `packages/evidence/src/datasets.ts`. Add one only if it holds
   ulcerative colitis or inflammatory bowel disease data from a public repository,
-  research programme or peer-reviewed release, and has a reachable terms page.
+  research programme or peer-reviewed release, and has a reachable terms page, given as
+  `termsUrl`. The one recorded exception is IBDMDB, which publishes no terms: it has no
+  `termsUrl`, and its licence and access are shown as not stated.
 - Take licence, access and size from the host's own page. If it does not state one,
   write `Not stated` (access: `not-stated`). Never infer it. Leave out any dataset
   you cannot check.
 - Note in `accessNote` any conditions or conflicting terms you find.
 - A copy on Hugging Face or Kaggle must hold the data, and you must check it by hand.
   Mark it `original` only when the host or the paper names that copy as the release.
-  Licence and access always come from the original.
+  Licence and access always come from the original. If a copy is partial or converted,
+  say how in its `note`.
 - Set `checkedOn` to the day you read the pages, and run `pnpm verify:links`.
 - Link to data; never add dataset files or abstracts to this repository.
 

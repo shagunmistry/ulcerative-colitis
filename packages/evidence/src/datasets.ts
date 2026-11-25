@@ -7,6 +7,8 @@ export interface Copy {
   id: string;
   /** true only when the dataset's host or paper names this copy as the release */
   original: boolean;
+  /** how the copy differs from the release */
+  note?: string;
   checkedOn: string;
 }
 
@@ -15,8 +17,8 @@ export interface Dataset {
   title: string;
   publisher: string;
   url: string;
-  /** page stating the terms of use, or the nearest thing the host publishes */
-  termsUrl: string;
+  /** page stating the terms of use; absent when none is published */
+  termsUrl?: string;
   summary: string;
   types: DataType[];
   size: string;
@@ -35,7 +37,13 @@ export const NOT_STATED = "Not stated";
 
 const CHECKED = "2026-11-25";
 
-const copy = (host: Copy["host"], id: string): Copy => ({ host, id, original: false, checkedOn: CHECKED });
+const copy = (host: Copy["host"], id: string, note?: string): Copy => ({
+  host,
+  id,
+  original: false,
+  note,
+  checkedOn: CHECKED,
+});
 
 interface Series {
   accession: string;
@@ -86,7 +94,13 @@ export const DATASETS: Dataset[] = [
     citation:
       "Polat G, Kani HT, Ergenc I, Ozen Alahdab Y, Temizel A, Atug O. Labeled Images for Ulcerative Colitis (LIMUC) Dataset. Zenodo, 2022. https://doi.org/10.5281/zenodo.5827695. The authors also ask users to acknowledge https://doi.org/10.1093/ibd/izac226 and their paper in Medical Image Understanding and Analysis (2022), pages 157-171.",
     topics: ["data"],
-    copies: [copy("Hugging Face", "chehablab/LIMUC")],
+    copies: [
+      copy(
+        "Hugging Face",
+        "chehablab/LIMUC",
+        "Images converted from BMP to PNG, in a single train split; the authors' test set is not separate.",
+      ),
+    ],
     checkedOn: CHECKED,
   },
   {
@@ -94,7 +108,6 @@ export const DATASETS: Dataset[] = [
     title: "IBDMDB: inflammatory bowel disease multi-omics data",
     publisher: "IBDMDB",
     url: "https://ibdmdb.org/results",
-    termsUrl: "https://ibdmdb.org/",
     summary:
       "Results and data files from studies of the gut microbes and their hosts in inflammatory bowel disease, including DNA and RNA sequencing, metabolites, proteins and viruses.",
     types: ["microbiome", "gene-expression", "other"],
@@ -121,18 +134,25 @@ export const DATASETS: Dataset[] = [
     licence: "CC BY 4.0",
     access: "open",
     accessNote:
-      "The authors' code repository (https://github.com/simula/hyper-kvasir) says that competitions and commercial use need prior written permission, which differs from the licence shown here. Ask the authors before such use.",
+      'The authors\' code repository (https://github.com/simula/hyper-kvasir) says: "The data is released fully open for research and educational purposes. The use of the dataset for purposes such as competitions and commercial purposes needs prior written permission." This differs from the CC BY 4.0 licence shown here. Ask the authors before such use.',
     citation:
       'Borgli H, Thambawita V, Smedsrud PH, et al. "HyperKvasir, a comprehensive multi-class image and video dataset for gastrointestinal endoscopy". Scientific Data 7, 283 (2020). https://doi.org/10.1038/s41597-020-00622-y',
     topics: ["data"],
-    copies: [copy("Hugging Face", "chehablab/HyperKvasirDataset"), copy("Kaggle", "kelkalot/the-hyper-kvasir-dataset")],
+    copies: [
+      copy(
+        "Hugging Face",
+        "chehablab/HyperKvasirDataset",
+        "Only the 10,662 labelled images, not the full 110,079 images and 374 videos.",
+      ),
+      copy("Kaggle", "kelkalot/the-hyper-kvasir-dataset"),
+    ],
     checkedOn: CHECKED,
   },
   geo({
     accession: "GSE109142",
     title: "rectal gene expression in children newly diagnosed with UC",
     summary:
-      "RNA sequencing of rectal biopsies taken before treatment from children newly diagnosed with ulcerative colitis.",
+      "RNA sequencing of rectal biopsies from children newly diagnosed with ulcerative colitis, taken before treatment, and from children without ulcerative colitis as controls.",
     samples: 226,
     file: "66M raw archive",
     paper:
