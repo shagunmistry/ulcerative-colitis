@@ -1,5 +1,6 @@
 import { GLOSSARY, linksFor, type Topic as TopicData } from "@uc/evidence";
 import { External } from "./External";
+import { Feedback } from "./Feedback";
 import { Glossary } from "./Glossary";
 import { Cite } from "./Page";
 
@@ -67,6 +68,7 @@ export function Topic({ topic }: { topic: TopicData }) {
             )}
           </div>
         </details>
+        <Feedback topicId={topic.id} />
       </div>
     </article>
   );
