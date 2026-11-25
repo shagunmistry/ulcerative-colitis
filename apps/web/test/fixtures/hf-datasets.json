@@ -1,0 +1,37 @@
+[
+  {
+    "id": "SimulaMet/Kvasir-VQA-x1",
+    "downloads": 21674,
+    "lastModified": "2025-08-27T12:50:11.000Z",
+    "tags": [
+      "license:cc-by-nc-4.0",
+      "task_categories:visual-question-answering",
+      "task_categories:image-text-to-text"
+    ],
+    "cardData": {
+      "license": "cc-by-nc-4.0"
+    }
+  },
+  {
+    "id": "berkaytrhn/kvasir-seg",
+    "downloads": 3823,
+    "lastModified": "2026-08-24T15:28:09.000Z",
+    "tags": [
+      "license:other",
+      "task_categories:image-segmentation",
+      "size_categories:1K<n<10K"
+    ],
+    "cardData": {
+      "license": "other"
+    }
+  },
+  {
+    "id": "San-D/Kvasir_V2",
+    "downloads": 2462,
+    "lastModified": "2024-10-16T19:22:28.000Z",
+    "tags": [
+      "size_categories:n<1K",
+      "format:imagefolder"
+    ]
+  }
+]

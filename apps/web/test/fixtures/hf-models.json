@@ -1,0 +1,31 @@
+[
+  {
+    "id": "goodcasper/kvasir_rtdetrv2_epoch500",
+    "downloads": 835,
+    "lastModified": "2025-06-10T19:44:04.000Z",
+    "tags": [
+      "transformers",
+      "tensorboard"
+    ]
+  },
+  {
+    "id": "goodcasper/kvasir_capsule_only_bbox_4090",
+    "downloads": 731,
+    "lastModified": "2025-07-04T06:29:46.000Z",
+    "tags": [
+      "license:apache-2.0",
+      "transformers",
+      "tensorboard"
+    ]
+  },
+  {
+    "id": "goodcasper/kvasir_capsule_only_bbox_itri_official_split",
+    "downloads": 578,
+    "lastModified": "2025-07-05T21:34:49.000Z",
+    "tags": [
+      "license:apache-2.0",
+      "transformers",
+      "tensorboard"
+    ]
+  }
+]
