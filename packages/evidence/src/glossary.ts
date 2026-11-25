@@ -1,0 +1,20 @@
+/** One-sentence, plain-language definitions for terms used across the site. */
+export const GLOSSARY: Record<string, string> = {
+  anaemia: "A shortage of red blood cells, which can cause tiredness and weakness.",
+  biopsy: "A tiny sample of tissue taken to examine under a microscope.",
+  colonoscopy: "A camera test that looks inside the whole large bowel.",
+  corticosteroid: "A medicine that dampens the immune system, used short-term for flares.",
+  endoscopy: "A procedure using a thin tube with a camera to look inside the body.",
+  flare: "A period when symptoms return or get worse.",
+  "immune system": "The body's defence against infection and injury.",
+  inflammation: "The body's response to injury or irritation, causing swelling, heat, and pain.",
+  integrin: "A protein on immune cells that helps them stick to and enter tissues.",
+  lymphocyte: "A type of white blood cell that helps direct the immune response.",
+  placebo: "A harmless substance with no medical effect, used as a comparison in trials.",
+  remission: "A period when symptoms are gone or very mild.",
+  sigmoidoscopy: "A camera test that looks inside the lower part of the large bowel.",
+  tenesmus: "The feeling that you need to pass stool when the bowel may be empty.",
+  "5-ASA": "Aminosalicylates: medicines that calm inflammation in the bowel lining.",
+  TNF: "A signal that drives inflammation; targeted by some biologic medicines.",
+  JAK: "Enzymes inside cells that relay immune signals; targeted by some tablet medicines.",
+};
