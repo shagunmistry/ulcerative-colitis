@@ -1,5 +1,74 @@
 # Contributing
 
+Corrections, sources, code and feedback are welcome. Please follow the
+[code of conduct](CODE_OF_CONDUCT.md). Never post personal health details: issues and
+pull requests are public.
+
+No GitHub account? See [Get involved](https://ulcerative-colitis.vercel.app/get-involved).
+
+## Ways to report
+
+- [Content error](https://github.com/shagunmistry/ulcerative-colitis/issues/new?template=content-error.yml)
+- [Patient feedback](https://github.com/shagunmistry/ulcerative-colitis/issues/new?template=patient-feedback.yml)
+- [Feature request](https://github.com/shagunmistry/ulcerative-colitis/issues/new?template=feature-request.yml)
+
+## Local setup
+
+Needs Node 24 and pnpm 10.
+
+```sh
+pnpm install
+pnpm dev              # http://localhost:3000
+pnpm test
+pnpm typecheck
+pnpm build
+pnpm verify:evidence  # cited titles and figures against PubMed (needs network)
+pnpm verify:links     # cited sources, further reading and dataset addresses (needs network)
+```
+
+## Add or update a topic
+
+1. Add each source to `packages/evidence/src/sources.ts` (format below).
+2. Add or edit the topic in `packages/evidence/src/topics.ts`, or for causes and other
+   approaches in `content.ts`. Give it a `plain` summary, a `caveat`, the `science`
+   lines and `sourceIds`.
+3. Run `pnpm test` and `pnpm verify:evidence`.
+4. In `packages/evidence/src/pages.ts`, update the page's `checkedOn`. If the change is
+   one of substance on a reviewed page, set its `review` back to `unreviewed`.
+
+## Citation format
+
+A PubMed paper takes an id, PMID, year, journal and exact title:
+
+```ts
+s("short-id", "PMID", YEAR, "Journal abbreviation", "Exact title of the paper"),
+```
+
+A public health web page takes an id, address, year (or `undefined` if the page shows
+none), publisher and title:
+
+```ts
+web("short-id", "https://...", undefined, "Publisher", "Page title"),
+```
+
+Topics refer to sources by `short-id`. Do not cite a page you have not read.
+
+## Content review
+
+Clinical review is recorded per page. See [docs/CLINICAL_REVIEW.md](docs/CLINICAL_REVIEW.md).
+A pull request being merged does not make a page clinically reviewed.
+
+## Pull request checklist
+
+- [ ] `pnpm test`, `pnpm typecheck` and `pnpm build` pass
+- [ ] Every new claim has a source, and `pnpm verify:evidence` passes if sources changed
+- [ ] Nothing tells a reader to start, stop or change a treatment
+- [ ] No new cookies or trackers, and nothing a visitor types leaves their browser
+      (live search excepted, as the privacy page describes)
+- [ ] Usable by keyboard, labelled, readable in both themes
+- [ ] The privacy page is updated if what is collected changed
+- [ ] No patient data, personal details, abstracts or figures from papers
+
 ## Medical claims
 
 - Every claim cites a source in `packages/evidence/src/sources.ts`: a PubMed paper, or

@@ -4,11 +4,12 @@ import { topicHref, type Topic } from "@uc/evidence";
 export const SITE_URL = "https://ulcerative-colitis.vercel.app";
 export const REPO_URL = "https://github.com/shagunmistry/ulcerative-colitis";
 
-/** A new GitHub issue, already naming the topic it is about. */
+/** A new content-error issue, already naming the topic and page it is about. */
 export function reportUrl(topic: Topic) {
   const query = new URLSearchParams({
+    template: "content-error.yml",
     title: `Feedback: ${topic.title}`,
-    body: `Page: ${SITE_URL}${topicHref(topic)}\n\nWhat was unclear or wrong?\n\n(Issues are public. Do not include personal or health details.)`,
+    page_url: `${SITE_URL}${topicHref(topic)}`,
   });
   return `${REPO_URL}/issues/new?${query}`;
 }

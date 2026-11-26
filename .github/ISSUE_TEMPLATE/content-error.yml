@@ -1,0 +1,27 @@
+name: Content error
+description: Something on the site is wrong or out of date.
+title: "Content error: "
+body:
+  - type: markdown
+    attributes:
+      value: "**This issue is public. Do not include personal health details.** In an emergency, contact emergency services."
+  - type: input
+    id: page_url
+    attributes:
+      label: Page address
+      placeholder: https://ulcerative-colitis.vercel.app/...
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source for the correction
+      description: A paper (PMID or DOI) or a public health page.
+    validations:
+      required: true

@@ -1,0 +1,27 @@
+name: Patient feedback
+description: Tell us what was confusing or missing. Also for comments on the journal and the consent terms.
+title: "Feedback: "
+body:
+  - type: markdown
+    attributes:
+      value: "**This issue is public. Do not post personal health details**, such as your diagnosis history, medicines, test results or journal entries. Nobody here can give medical advice."
+  - type: input
+    id: page_url
+    attributes:
+      label: Page address (if it is about a page)
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What was confusing or missing?
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Which describes you? (optional)
+      options:
+        - Prefer not to say
+        - I live with UC
+        - Caregiver
+        - Clinician
+        - Researcher

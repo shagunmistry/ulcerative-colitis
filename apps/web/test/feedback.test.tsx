@@ -12,14 +12,13 @@ describe("feedback", () => {
     const url = new URL(reportUrl(topic));
     expect(url.origin + url.pathname).toBe("https://github.com/shagunmistry/ulcerative-colitis/issues/new");
     expect(url.searchParams.get("title")).toBe("Feedback: Faecal microbiota transplant");
-    expect(url.searchParams.get("body")).toContain("https://ulcerative-colitis.vercel.app/treatments/other#fmt");
-    expect(url.searchParams.get("body")).toMatch(/public.*health/i);
+    expect(url.searchParams.get("page_url")).toBe("https://ulcerative-colitis.vercel.app/treatments/other#fmt");
   });
 
   it("offers that link on each topic instead of votes that nobody receives", () => {
     const html = renderToStaticMarkup(<Topic topic={topic} />);
     expect(html).toContain("Report a problem with this topic");
-    expect(html).toContain("/issues/new?title=");
+    expect(html).toContain("/issues/new?template=content-error.yml");
     expect(html).not.toContain("Was this clear?");
   });
 
