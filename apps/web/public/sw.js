@@ -20,6 +20,7 @@ const SHELL = [
   "/about",
   "/journal",
   "/commons",
+  "/get-involved",
 ];
 
 self.addEventListener("install", (event) => {

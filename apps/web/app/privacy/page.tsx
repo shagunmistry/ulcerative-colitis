@@ -102,7 +102,8 @@ export default function Privacy() {
         <h2 className={h2}>Hosting and other sites</h2>
         <p>
           The site is hosted by Vercel, which processes requests in order to serve pages. Links marked external lead to
-          sites with their own privacy practices.
+          sites with their own privacy practices. That includes any sign-up or feedback form we link to: this site does
+          not collect or store what you enter there.
         </p>
         <h2 className={h2}>Contact</h2>
         <p>
