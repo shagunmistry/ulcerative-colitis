@@ -7,6 +7,7 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
+    "check:citations": "node --max-http-header-size=65536 pipelines/check-citations.mjs",
     "verify:evidence": "node pipelines/verify-evidence.mjs",
     "verify:links": "node --max-http-header-size=65536 pipelines/verify-links.mjs"
   },

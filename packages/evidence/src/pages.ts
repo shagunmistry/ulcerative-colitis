@@ -1,5 +1,5 @@
-import { LAST_CHECKED } from "./content";
-import type { Review } from "./review";
+import { LAST_CHECKED } from "./content.ts";
+import type { Review } from "./review.ts";
 
 /** A page that makes medical or scientific claims, and so can be clinically reviewed. */
 export interface ContentPage {

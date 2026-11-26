@@ -22,6 +22,14 @@ review status in the open so that anyone can check, correct and build on them.
 - A 3D teaching simulator with a [model card](https://ulcerative-colitis.vercel.app/simulator/model)
 - A library of open datasets, and live search of trials, papers and Hugging Face
 - [Clinical review status](https://ulcerative-colitis.vercel.app/reviewers) shown on every content page
+- [My UC Journal](https://ulcerative-colitis.vercel.app/journal), a prototype that keeps entries on
+  your device, with export, import, delete everything and your own
+  [consent terms](spec/consent-terms/README.md) (v0.1 draft)
+- [Data commons roadmap](https://ulcerative-colitis.vercel.app/commons),
+  [get involved](https://ulcerative-colitis.vercel.app/get-involved) and a
+  [changelog](https://ulcerative-colitis.vercel.app/changelog)
+- Counts page views and a few actions without cookies or personal data; see the
+  [privacy page](https://ulcerative-colitis.vercel.app/privacy)
 - Works offline after the first visit; no accounts and no cookies
 
 ## Tech stack
@@ -40,6 +48,7 @@ pnpm test
 pnpm typecheck
 pnpm build
 pnpm verify:evidence  # checks cited titles and figures against PubMed (needs network)
+npm run check:citations  # broken citation links and missing checked dates; runs on pull requests
 pnpm verify:links     # checks that cited sources, further reading and dataset addresses respond (needs network)
 ```
 
@@ -56,6 +65,7 @@ On Vercel, set the project's root directory to `apps/web`.
 | `packages/viz3d` | Colon anatomy logic and the 3D scene |
 | `packages/evidence` | Sources, topics, trial figures, datasets, review records, further reading and search |
 | `pipelines` | Scripts that check or fetch data |
+| `spec` | Open formats, starting with consent terms |
 | `docs` | Design notes and the clinical review checklist |
 
 ## Data sources

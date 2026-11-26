@@ -23,6 +23,7 @@ pnpm test
 pnpm typecheck
 pnpm build
 pnpm verify:evidence  # cited titles and figures against PubMed (needs network)
+npm run check:citations  # broken citation links and missing checked dates; runs on pull requests
 pnpm verify:links     # cited sources, further reading and dataset addresses (needs network)
 ```
 
@@ -61,6 +62,8 @@ A pull request being merged does not make a page clinically reviewed.
 ## Pull request checklist
 
 - [ ] `pnpm test`, `pnpm typecheck` and `pnpm build` pass
+- [ ] `npm run check:citations` passes if links or pages changed
+- [ ] `CHANGELOG.md` has a line for changes a reader would notice
 - [ ] Every new claim has a source, and `pnpm verify:evidence` passes if sources changed
 - [ ] Nothing tells a reader to start, stop or change a treatment
 - [ ] No new cookies or trackers, and nothing a visitor types leaves their browser
