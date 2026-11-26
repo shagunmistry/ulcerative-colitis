@@ -17,7 +17,7 @@ export default function OtherApproaches() {
   const topics = topicsIn("other");
   return (
     <Page
-      evidence
+      content="/treatments/other"
       title="Supplements, microbes and diet"
       intro="What has been tested beyond standard medicines. Do not swap prescribed treatment for any of these without talking to your care team, and tell them about anything you take."
     >

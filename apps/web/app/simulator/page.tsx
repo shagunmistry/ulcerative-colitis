@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ReviewBadge } from "@/components/ReviewBadge";
 import { Simulator } from "@/components/Simulator";
 
 export const metadata: Metadata = { title: "Simulator" };
@@ -10,6 +11,9 @@ export default function SimulatorPage() {
   return (
     <div className="mx-auto w-full max-w-[1400px] px-6 py-10 lg:px-10">
       <h1 className="display max-w-3xl text-4xl sm:text-5xl">Watch ulcerative colitis take hold, then push it back</h1>
+      <div className="mt-4">
+        <ReviewBadge path="/simulator" />
+      </div>
       <p className="mt-4 max-w-prose text-[var(--ink-soft)]">
         Set how susceptible the colon is, trigger a flare, add treatments and follow a simulated year. Read what is
         known about{" "}

@@ -1,4 +1,6 @@
+import { reviewStatement } from "@uc/evidence";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { External } from "@/components/External";
 import { Page } from "@/components/Page";
 import { UrgentCare } from "@/components/UrgentCare";
@@ -10,7 +12,12 @@ export default function Disclaimer() {
   return (
     <Page title="Disclaimer" intro="This site is for learning. It is not medical advice and does not replace your care team.">
       <ul className="mb-10 max-w-prose list-disc space-y-2 pl-5">
-        <li>No clinician has reviewed the content yet.</li>
+        <li>
+          {reviewStatement()}{" "}
+          <Link href="/reviewers" className="text-[var(--source)] underline underline-offset-4">
+            Review status by page
+          </Link>
+        </li>
         <li>Do not start, stop or change any treatment because of something you read or saw here.</li>
         <li>
           The simulator is a hand-built, unvalidated teaching model. It cannot predict your disease, a flare or how you

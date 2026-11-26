@@ -18,7 +18,7 @@ export default function Understand() {
   const causes = topicsIn("cause");
   return (
     <Page
-      evidence
+      content="/understand"
       title="Understand ulcerative colitis"
       intro="Each topic starts in plain language. Open the science for detail, or the sources to check it yourself."
     >

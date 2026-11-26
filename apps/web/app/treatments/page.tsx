@@ -57,7 +57,7 @@ export default function Treatments() {
   const topics = topicsIn("medicine");
   return (
     <Page
-      evidence
+      content="/treatments"
       title="Medicines"
       intro="What the main drug families do, then what individual drugs achieved against placebo in trials."
     >

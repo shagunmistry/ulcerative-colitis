@@ -13,6 +13,7 @@ dE/dt = retreat · (I − θ) · E        otherwise`;
 export default function Model() {
   return (
     <Page
+      content="/simulator/model"
       title="How the model works"
       intro="Four numbers change day by day: the barrier (B), microbial exposure (M), inflammation (I) and how far up the colon it reaches (E). Susceptibility (s) sets how readily inflammation sustains itself and how slowly the lining repairs."
     >

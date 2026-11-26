@@ -13,6 +13,7 @@ const heading = "display text-3xl";
 export default function Data() {
   return (
     <Page
+      content="/data"
       title="Data library"
       intro="Datasets, research papers and registries about ulcerative colitis and inflammatory bowel disease. We link to them and do not host the data. Read each source's terms before you use it."
     >

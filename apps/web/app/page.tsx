@@ -1,4 +1,4 @@
-import { DATASETS, LAST_CHECKED } from "@uc/evidence";
+import { DATASETS, LAST_CHECKED, reviewStatement } from "@uc/evidence";
 import Link from "next/link";
 import { External } from "@/components/External";
 import { LandingPreview } from "@/components/LandingPreview";
@@ -81,9 +81,12 @@ export default function Home() {
         <h2 className="display text-2xl">How we handle evidence</h2>
         <p className="mt-3 max-w-prose text-[var(--ink-soft)]">
           Topics cite published papers or public health pages. Last checked on{" "}
-          <span className="timecode">{LAST_CHECKED}</span>. No clinician has reviewed this site yet, and the simulation
-          is a teaching model that predicts nothing about you. Spotted a mistake?{" "}
-          <External href={`${REPO_URL}/issues`}>Report it</External>
+          <span className="timecode">{LAST_CHECKED}</span>. {reviewStatement()} The simulation is a teaching model that
+          predicts nothing about you.{" "}
+          <Link href="/reviewers" className={inline}>
+            Review status by page
+          </Link>
+          . Spotted a mistake? <External href={`${REPO_URL}/issues`}>Report it</External>
         </p>
       </section>
     </div>

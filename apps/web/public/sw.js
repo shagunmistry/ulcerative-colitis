@@ -2,7 +2,7 @@
  * Offline support. Medical text must never go stale, so the network always comes
  * first and saved copies are only used when it cannot be reached.
  */
-const CACHE = "uc-v4";
+const CACHE = "uc-v5";
 
 const SHELL = [
   "/",
@@ -16,6 +16,7 @@ const SHELL = [
   "/search",
   "/privacy",
   "/disclaimer",
+  "/reviewers",
 ];
 
 self.addEventListener("install", (event) => {

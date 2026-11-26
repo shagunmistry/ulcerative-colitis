@@ -1,27 +1,32 @@
-import { getSource, LAST_CHECKED, sourceUrl } from "@uc/evidence";
+import { getPage, getSource, sourceUrl } from "@uc/evidence";
 import { External } from "./External";
+import { ReviewBadge } from "./ReviewBadge";
 
 export function Page({
   title,
   intro,
-  evidence = false,
+  content,
   children,
 }: {
   title: string;
   intro: string;
-  /** show when the page makes medical claims */
-  evidence?: boolean;
+  /** the page's path in PAGES, when it makes medical or scientific claims */
+  content?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="mx-auto w-full max-w-[1100px] px-6 py-14 lg:px-10">
       <h1 className="display max-w-3xl text-4xl sm:text-5xl">{title}</h1>
       <p className="mt-5 max-w-prose text-[var(--ink-soft)]">{intro}</p>
+      {content && (
+        <div className="mt-5">
+          <ReviewBadge path={content} />
+        </div>
+      )}
       <div className="mt-12">{children}</div>
-      {evidence && (
+      {content && (
         <p className="slug mt-12 text-[var(--ink-soft)]">
-          Checked against the cited sources on <span className="timecode">{LAST_CHECKED}</span>. Not yet reviewed by a
-          clinician.
+          Last checked against its sources on <span className="timecode">{getPage(content).checkedOn}</span>.
         </p>
       )}
     </div>
