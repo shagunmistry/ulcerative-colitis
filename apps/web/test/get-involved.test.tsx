@@ -2,8 +2,13 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import GetInvolved from "../app/get-involved/page";
 import { Footer } from "../components/Footer";
+import { OWNER } from "../owner";
 
-afterEach(() => vi.unstubAllEnvs());
+const email = OWNER.email;
+afterEach(() => {
+  vi.unstubAllEnvs();
+  OWNER.email = email;
+});
 const render = () => renderToStaticMarkup(<GetInvolved />).replaceAll("&#x27;", "'");
 
 describe("get involved", () => {
@@ -17,8 +22,10 @@ describe("get involved", () => {
     expect(html).toContain("TODO(owner): stipend");
   });
 
-  it("shows an email to-do until a sign-up form is configured", () => {
+  it("asks people to email until a sign-up form is configured", () => {
     vi.stubEnv("NEXT_PUBLIC_ADVISORY_FORM_URL", "");
+    expect(render()).toContain(`href="mailto:${email}"`);
+    OWNER.email = "TODO(owner): contact email";
     const html = render();
     expect(html).toContain("Email ");
     expect(html).toContain("TODO(owner): contact email");

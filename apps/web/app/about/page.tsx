@@ -31,7 +31,7 @@ export default function About() {
         <h2 className="display text-3xl">Who built this</h2>
         <div className="mt-4 flex flex-wrap items-start gap-6">
           {hasPhoto() ? (
-            <img src="/about/owner.jpg" alt={isSet(OWNER.name) ? OWNER.name : "The site's builder"} width={160} height={160} className="h-40 w-40 object-cover" />
+            <img src="/about/owner.jpg" alt={OWNER.photoAlt} width={960} height={674} className="h-auto w-full max-w-xs" />
           ) : (
             <p className="panel h-40 w-40 overflow-hidden p-3 text-sm [overflow-wrap:anywhere]">
               <Todo>TODO(owner): photo at /public/about/owner.jpg</Todo>

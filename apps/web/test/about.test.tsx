@@ -23,6 +23,16 @@ describe("about page", () => {
     expect(renderToStaticMarkup(<Footer />)).toContain('href="/about"');
   });
 
+  it("names the builder, with their photo and contact links", () => {
+    const html = renderToStaticMarkup(<About />);
+    expect(html).toContain("Shagun Mistry");
+    expect(html).toContain('src="/about/owner.jpg"');
+    expect(html).toContain('href="mailto:ulcerative-colitis.grudge839@passmail.net"');
+    expect(html).toContain('href="https://github.com/shagunmistry"');
+    expect(html).toContain('href="https://www.linkedin.com/in/shagun-mistry/"');
+    expect(html).not.toMatch(/TODO\(owner\): (name|bio|photo|contact|GitHub|LinkedIn)/);
+  });
+
   it("marks every detail that only the owner can supply", () => {
     for (const value of Object.values(OWNER)) {
       if (!isSet(value)) expect(renderToStaticMarkup(<About />)).toContain(value);
