@@ -33,7 +33,7 @@ export default function About() {
           {hasPhoto() ? (
             <img src="/about/owner.jpg" alt={isSet(OWNER.name) ? OWNER.name : "The site's builder"} width={160} height={160} className="h-40 w-40 object-cover" />
           ) : (
-            <p className="panel flex h-40 w-40 items-center p-3 text-sm">
+            <p className="panel h-40 w-40 overflow-hidden p-3 text-sm [overflow-wrap:anywhere]">
               <Todo>TODO(owner): photo at /public/about/owner.jpg</Todo>
             </p>
           )}
