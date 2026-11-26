@@ -1,5 +1,6 @@
 import { getPage, getSource, sourceUrl } from "@uc/evidence";
 import { External } from "./External";
+import { Helpful } from "./Helpful";
 import { ReviewBadge } from "./ReviewBadge";
 
 export function Page({
@@ -29,6 +30,7 @@ export function Page({
           Last checked against its sources on <span className="timecode">{getPage(content).checkedOn}</span>.
         </p>
       )}
+      {content && <Helpful key={content} path={content} />}
     </div>
   );
 }

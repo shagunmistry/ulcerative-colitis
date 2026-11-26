@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Helpful } from "@/components/Helpful";
 import { ReviewBadge } from "@/components/ReviewBadge";
 import { Simulator } from "@/components/Simulator";
 
@@ -34,6 +35,7 @@ export default function SimulatorPage() {
         </Link>
       </p>
       <Simulator />
+      <Helpful path="/simulator" />
     </div>
   );
 }
