@@ -21,6 +21,7 @@ const SHELL = [
   "/journal",
   "/commons",
   "/get-involved",
+  "/changelog",
 ];
 
 self.addEventListener("install", (event) => {

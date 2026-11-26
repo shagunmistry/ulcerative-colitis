@@ -50,6 +50,11 @@ export function Footer() {
             </li>
           )}
           <li>
+            <Link href="/changelog" className={link}>
+              Changelog
+            </Link>
+          </li>
+          <li>
             <Link href="/disclaimer" className={link}>
               Disclaimer
             </Link>
