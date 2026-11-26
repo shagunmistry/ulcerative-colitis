@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shagunmistry/ulcerative-colitis/blob/main/spec/consent-terms/v0.1/schema.json",
+  "title": "UC consent terms 0.1 (draft)",
+  "description": "Terms a person attaches to their own health data. A draft for discussion; not legally binding.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec",
+    "created",
+    "allowed_uses",
+    "denied_uses",
+    "requires_contact_before_use",
+    "share_derivatives",
+    "expires",
+    "withdrawal",
+    "contact"
+  ],
+  "properties": {
+    "spec": { "const": "uc-consent-terms/0.1" },
+    "created": { "$ref": "#/$defs/date", "description": "Date these terms were last changed." },
+    "allowed_uses": { "$ref": "#/$defs/uses", "description": "Uses the person allows. Any use not listed here is not allowed." },
+    "denied_uses": { "$ref": "#/$defs/uses", "description": "Uses the person explicitly refuses." },
+    "requires_contact_before_use": { "type": "boolean" },
+    "share_derivatives": { "enum": ["must_share_results_back", "no_requirement", "not_allowed"] },
+    "expires": { "oneOf": [{ "$ref": "#/$defs/date" }, { "type": "null" }] },
+    "withdrawal": { "const": "any_time" },
+    "contact": { "oneOf": [{ "type": "string", "minLength": 1, "maxLength": 200 }, { "type": "null" }] }
+  },
+  "allOf": [
+    { "$ref": "#/$defs/notBoth_personal" },
+    { "$ref": "#/$defs/notBoth_clinical_care" },
+    { "$ref": "#/$defs/notBoth_academic_research" },
+    { "$ref": "#/$defs/notBoth_commercial_research" },
+    { "$ref": "#/$defs/notBoth_ai_training" }
+  ],
+  "$defs": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "uses": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["personal", "clinical_care", "academic_research", "commercial_research", "ai_training"] }
+    },
+    "notBoth_personal": {
+      "not": { "properties": { "allowed_uses": { "contains": { "const": "personal" } }, "denied_uses": { "contains": { "const": "personal" } } } }
+    },
+    "notBoth_clinical_care": {
+      "not": { "properties": { "allowed_uses": { "contains": { "const": "clinical_care" } }, "denied_uses": { "contains": { "const": "clinical_care" } } } }
+    },
+    "notBoth_academic_research": {
+      "not": { "properties": { "allowed_uses": { "contains": { "const": "academic_research" } }, "denied_uses": { "contains": { "const": "academic_research" } } } }
+    },
+    "notBoth_commercial_research": {
+      "not": { "properties": { "allowed_uses": { "contains": { "const": "commercial_research" } }, "denied_uses": { "contains": { "const": "commercial_research" } } } }
+    },
+    "notBoth_ai_training": {
+      "not": { "properties": { "allowed_uses": { "contains": { "const": "ai_training" } }, "denied_uses": { "contains": { "const": "ai_training" } } } }
+    }
+  }
+}

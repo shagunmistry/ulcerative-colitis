@@ -18,6 +18,7 @@ const SHELL = [
   "/disclaimer",
   "/reviewers",
   "/about",
+  "/journal",
 ];
 
 self.addEventListener("install", (event) => {

@@ -18,6 +18,11 @@ export function Footer() {
         </p>
         <ul className="flex flex-wrap gap-x-6 gap-y-2">
           <li>
+            <Link href="/journal" className={link}>
+              My UC Journal
+            </Link>
+          </li>
+          <li>
             <Link href="/about" className={link}>
               About
             </Link>

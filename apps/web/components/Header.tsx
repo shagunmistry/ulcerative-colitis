@@ -10,6 +10,7 @@ const MENU = [
   { href: "/treatments", label: "Treatments" },
   { href: "/simulator", label: "Simulator" },
   { href: "/data", label: "Data" },
+  { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
   { href: "/search", label: "Search" },
 ];

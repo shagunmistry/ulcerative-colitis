@@ -18,7 +18,7 @@ const EVENTS = [
 
 export default function Privacy() {
   return (
-    <Page title="Privacy" intro="This site has no accounts and does not ask for health information. Only live search sends what you type anywhere.">
+    <Page title="Privacy" intro="This site has no accounts. Health information you record in the journal stays on your device. Only live search sends what you type anywhere.">
       <div className="max-w-prose space-y-3">
         <h2 className="display text-2xl">Visitor statistics</h2>
         <p>
@@ -64,6 +64,16 @@ export default function Privacy() {
         <p>
           What you type into the site&apos;s Search page and the settings you choose in the simulator stay in your browser&apos;s memory and
           disappear when you leave. Your light or dark theme choice is saved in your browser.
+        </p>
+        <h3 id="journal" className="display mt-6 scroll-mt-32 text-xl">
+          My UC Journal
+        </h3>
+        <p>
+          Journal entries and consent terms are saved only in this browser&apos;s storage (IndexedDB). They are never
+          sent to us, to analytics or to anyone else. Page views of the journal and the two journal counts above are
+          recorded, with nothing from your entries. Exported files are saved on your device, are not encrypted, and go
+          only where you send them. &ldquo;Delete everything&rdquo; removes the entries and terms from this browser, not
+          from files you exported.
         </p>
         <p>
           So that the site can work offline, your browser also saves copies of pages and files from this site on your
