@@ -18,21 +18,42 @@ export const SEGMENTS: Segment[] = [
 
 export const segmentAt = (s: number) => SEGMENTS.find((x) => s <= x.end) ?? SEGMENTS[SEGMENTS.length - 1]!;
 
-const QUIET = 0.05;
-const MIN_REACH = 0.07;
-const EDGE = 0.08;
+/** Numbers that turn the model's values into a picture. Listed on the model card. */
+export const DRAWING = {
+  /** below this inflammation the colon is drawn and described as quiet */
+  quietBelow: 0.05,
+  /** the least of the colon involved once there is any inflammation */
+  minReach: 0.07,
+  /** length over which involvement fades out above the extent */
+  fadeLength: 0.08,
+  /** ulcer patches: noise level where they start at no intensity, and how much intensity lowers it */
+  ulcerEdge: 0.75,
+  ulcerEdgeFall: 0.65,
+  ulcerSoftness: 0.25,
+  /** intensity below which no ulcer patches show */
+  ulcerFrom: 0.3,
+  /** mucus thickness is barrier integrity raised to this power */
+  mucusPower: 2,
+  /** open gaps drawn in a fully lost barrier */
+  maxGaps: 10,
+  /** microbial exposure is multiplied by this before bacteria are drawn */
+  bacteriaGain: 5,
+  maxBacteria: 24,
+  restingImmuneCells: 4,
+  extraImmuneCells: 44,
+};
 
 /** Inflammation intensity at one position: continuous upward from the rectum. */
 export function involvement(s: number, extent: number, inflammation: number): number {
-  if (inflammation < QUIET) return 0;
-  const reach = Math.max(extent, MIN_REACH);
-  return clamp(inflammation) * clamp((reach + EDGE - s) / EDGE);
+  if (inflammation < DRAWING.quietBelow) return 0;
+  const reach = Math.max(extent, DRAWING.minReach);
+  return clamp(inflammation) * clamp((reach + DRAWING.fadeLength - s) / DRAWING.fadeLength);
 }
 
 /** Montreal classification of disease extent (E1 to E3). */
 export function montrealExtent(extent: number, inflammation: number): string {
-  if (inflammation < QUIET) return "No active inflammation";
-  const reach = Math.max(extent, MIN_REACH);
+  if (inflammation < DRAWING.quietBelow) return "No active inflammation";
+  const reach = Math.max(extent, DRAWING.minReach);
   if (reach <= SEGMENTS[0]!.end) return "E1, proctitis";
   // E2 stops at the splenic flexure, the top of the descending colon.
   if (reach <= SEGMENTS[2]!.end) return "E2, left-sided colitis";
@@ -66,9 +87,10 @@ export interface MucosaState {
 export function mucosaState(v: { barrier: number; microbes: number; inflammation: number }): MucosaState {
   const barrier = clamp(v.barrier);
   return {
-    mucusThickness: barrier ** 2 > 0.999 ? 1 : barrier ** 2,
-    gaps: Math.round((1 - barrier) * 10),
-    bacteriaInside: Math.round(clamp(v.microbes * 5) * 24),
-    immuneCells: 4 + Math.round(clamp(v.inflammation) * 44),
+    // Rounding error must not make a healthy barrier look thinned.
+    mucusThickness: barrier ** DRAWING.mucusPower > 0.999 ? 1 : barrier ** DRAWING.mucusPower,
+    gaps: Math.round((1 - barrier) * DRAWING.maxGaps),
+    bacteriaInside: Math.round(clamp(v.microbes * DRAWING.bacteriaGain) * DRAWING.maxBacteria),
+    immuneCells: DRAWING.restingImmuneCells + Math.round(clamp(v.inflammation) * DRAWING.extraImmuneCells),
   };
 }

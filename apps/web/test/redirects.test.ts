@@ -7,6 +7,7 @@ describe("redirects", () => {
       ["/causes", "/understand"],
       ["/alternatives", "/treatments/other"],
       ["/model", "/simulator/model"],
+      ["/simulator/model-card", "/simulator/model"],
       ["/learn", "/understand"],
       ["/learn/about-uc", "/understand"],
       ["/learn/living-with-uc", "/understand"],

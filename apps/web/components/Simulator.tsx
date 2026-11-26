@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { events, once } from "@/analytics";
+import { SIM_UI } from "@/simulator-settings";
 import { Mucosa } from "./Mucosa";
 import { SceneBoundary } from "./SceneBoundary";
 import { Timeline } from "./Timeline";
@@ -15,8 +16,6 @@ const ColonScene = dynamic(() => import("@uc/viz3d/scene"), {
   loading: () => <p className="p-5 text-sm text-[var(--ink-soft)]">Loading the 3D view…</p>,
 });
 
-const START_DAY = 150;
-const DAYS_PER_SECOND = 30;
 
 function Slider(props: {
   label: string;
@@ -53,7 +52,7 @@ export function Simulator() {
   const [triggerSize, setTriggerSize] = useState(DEFAULT_SCENARIO.triggers[0]!.size);
   const [triggerDay, setTriggerDay] = useState(DEFAULT_SCENARIO.triggers[0]!.day);
   const [treatments, setTreatments] = useState<Treatment[]>([]);
-  const [day, setDay] = useState(START_DAY);
+  const [day, setDay] = useState(SIM_UI.startDay);
   const [playing, setPlaying] = useState(false);
   const [segment, setSegment] = useState<string | null>(null);
   // Counted once per visit, when someone first runs or changes the starting scenario.
@@ -67,7 +66,7 @@ export function Simulator() {
 
   useEffect(() => {
     if (!playing) return;
-    const timer = setInterval(() => setDay((d) => Math.min(days, d + 1)), 1000 / DAYS_PER_SECOND);
+    const timer = setInterval(() => setDay((d) => Math.min(days, d + 1)), 1000 / SIM_UI.daysPerSecond);
     return () => clearInterval(timer);
   }, [playing, days]);
 
@@ -88,7 +87,7 @@ export function Simulator() {
 
   const toggle = (id: TherapyId, on: boolean) =>
     setTreatments((list) =>
-      on ? [...list, { id, strength: DEFAULT_STRENGTH, startDay: day < days ? day : 90 }] : list.filter((t) => t.id !== id),
+      on ? [...list, { id, strength: DEFAULT_STRENGTH, startDay: day < days ? day : SIM_UI.lateStartDay }] : list.filter((t) => t.id !== id),
     );
 
   const reset = () => {
@@ -96,7 +95,7 @@ export function Simulator() {
     setTriggerSize(DEFAULT_SCENARIO.triggers[0]!.size);
     setTriggerDay(DEFAULT_SCENARIO.triggers[0]!.day);
     setTreatments([]);
-    setDay(START_DAY);
+    setDay(SIM_UI.startDay);
     setPlaying(false);
   };
 
@@ -198,7 +197,7 @@ export function Simulator() {
           <Slider
             label="Trigger starts"
             min={0}
-            max={180}
+            max={SIM_UI.latestTriggerDay}
             step={1}
             value={triggerDay}
             display={`day ${triggerDay}`}
@@ -242,7 +241,7 @@ export function Simulator() {
                       <p className="text-sm">{therapy.mechanism}</p>
                       <Slider
                         label="Strength"
-                        min={0.1}
+                        min={SIM_UI.minStrength}
                         max={1}
                         step={0.05}
                         value={active.strength}

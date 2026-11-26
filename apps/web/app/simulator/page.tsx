@@ -30,7 +30,7 @@ export default function SimulatorPage() {
         The simulation is a hand-built teaching model. It does not predict anyone&apos;s disease or response to
         treatment.{" "}
         <Link href="/simulator/model" className="underline underline-offset-4">
-          How it works
+          Model card: assumptions and limits
         </Link>
       </p>
       <Simulator />

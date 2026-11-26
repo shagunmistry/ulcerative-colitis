@@ -5,7 +5,7 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useState } from "react";
 import * as THREE from "three";
 import { ImprovedNoise } from "three/examples/jsm/math/ImprovedNoise.js";
-import { involvement, segmentAt, tissueColor } from "./anatomy";
+import { DRAWING, involvement, segmentAt, tissueColor } from "./anatomy";
 
 /* A stylised colon, viewed from the front: the cecum sits on the viewer's left. */
 const POINTS: [number, number, number][] = [
@@ -104,8 +104,10 @@ function Colon({ extent, inflammation, onSegment }: SceneProps) {
       for (let i = 0; i <= SIDES; i++) {
         const k = j * (SIDES + 1) + i;
         // Ulcer patches appear above moderate intensity and widen as it rises.
-        const edge = 0.75 - level * 0.65;
-        const ulcer = THREE.MathUtils.smoothstep(patches[k]!, edge, edge + 0.25) * Math.max(0, level - 0.3);
+        const edge = DRAWING.ulcerEdge - level * DRAWING.ulcerEdgeFall;
+        const ulcer =
+          THREE.MathUtils.smoothstep(patches[k]!, edge, edge + DRAWING.ulcerSoftness) *
+          Math.max(0, level - DRAWING.ulcerFrom);
         c.setRGB(...tissueColor(level + ulcer), THREE.SRGBColorSpace);
         color.setXYZ(k, c.r, c.g, c.b);
       }

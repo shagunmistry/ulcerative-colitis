@@ -4,6 +4,7 @@ import { DEFAULT_SCENARIO, DEFAULT_STRENGTH, simulate } from "@uc/sim";
 import { montrealExtent } from "@uc/viz3d";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { SIM_UI } from "../simulator-settings";
 import { SceneBoundary } from "./SceneBoundary";
 
 const ColonScene = dynamic(() => import("@uc/viz3d/scene"), {
@@ -11,7 +12,7 @@ const ColonScene = dynamic(() => import("@uc/viz3d/scene"), {
   loading: () => <p className="p-5 text-sm text-[var(--ink-soft)]">Loading the 3D view…</p>,
 });
 
-const TREATMENT_DAY = 150;
+const TREATMENT_DAY = SIM_UI.previewTreatmentDay;
 const RESULT = simulate({
   ...DEFAULT_SCENARIO,
   treatments: [{ id: "cytokine", strength: DEFAULT_STRENGTH, startDay: TREATMENT_DAY }],
