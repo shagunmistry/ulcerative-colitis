@@ -81,6 +81,20 @@ export default function Home() {
       </div>
 
       <section className="mt-12 border-t border-[var(--rule)] pt-8">
+        <h2 className="display text-2xl">Your data, your terms</h2>
+        <p className="mt-3 max-w-prose text-[var(--ink-soft)]">
+          We are working towards a patient-governed data commons. Today there is a prototype{" "}
+          <Link href="/journal" className={inline}>
+            journal that stays on your device
+          </Link>
+          .{" "}
+          <Link href="/commons" className={inline}>
+            Where this is going
+          </Link>
+        </p>
+      </section>
+
+      <section className="mt-12 border-t border-[var(--rule)] pt-8">
         <h2 className="display text-2xl">How we handle evidence</h2>
         <p className="mt-3 max-w-prose text-[var(--ink-soft)]">
           Topics cite published papers or public health pages. Last checked on{" "}

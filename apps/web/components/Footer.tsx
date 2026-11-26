@@ -23,6 +23,11 @@ export function Footer() {
             </Link>
           </li>
           <li>
+            <Link href="/commons" className={link}>
+              Data commons
+            </Link>
+          </li>
+          <li>
             <Link href="/about" className={link}>
               About
             </Link>
