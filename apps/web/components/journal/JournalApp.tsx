@@ -62,7 +62,8 @@ export function JournalApp() {
   }
 
   if (!data) {
-    return problem ? <p role="alert">{problem}</p> : <p>Opening your journal…</p>;
+    // Holds the space the journal will fill, so the footer does not jump.
+    return <div className="min-h-screen">{problem ? <p role="alert">{problem}</p> : <p>Opening your journal…</p>}</div>;
   }
   const { entries, terms, version } = data;
 

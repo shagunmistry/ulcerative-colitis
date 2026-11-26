@@ -1,7 +1,7 @@
 "use client";
 
 import { DEFAULT_SCENARIO, DEFAULT_STRENGTH, simulate } from "@uc/sim";
-import { montrealExtent } from "@uc/viz3d";
+import { describeColon, montrealExtent } from "@uc/viz3d";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { SIM_UI } from "../simulator-settings";
@@ -39,6 +39,7 @@ export function LandingPreview() {
 
   return (
     <figure className="panel">
+      <p className="sr-only">{describeColon(RESULT.extent[day]!, RESULT.inflammation[day]!)}</p>
       <div className="relative h-[20rem] sm:h-[26rem]">
         <SceneBoundary>
           <ColonScene extent={RESULT.extent[day]!} inflammation={RESULT.inflammation[day]!} />

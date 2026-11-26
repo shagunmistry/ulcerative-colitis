@@ -23,7 +23,7 @@ export default function Understand() {
       intro="Each topic starts in plain language. Open the science for detail, or the sources to check it yourself."
     >
       <h2 className="sr-only">The basics</h2>
-      <Contents topics={basics} />
+      <Contents topics={basics} label="The basics on this page" />
       <div className="mt-4">
         <TopicList topics={basics} />
       </div>
@@ -35,7 +35,7 @@ export default function Understand() {
         No single cause is known. The disease appears where inherited risk, a weakened lining, gut microbes, immune
         signals and surroundings meet. Each topic says how firm the evidence is.
       </p>
-      <Contents topics={causes} />
+      <Contents topics={causes} label="Causes on this page" />
       <div className="mt-4">
         <TopicList topics={causes} />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { DEFAULT_SCENARIO, DEFAULT_STRENGTH, simulate, THERAPIES, type TherapyId, type Treatment } from "@uc/sim";
-import { montrealExtent } from "@uc/viz3d";
+import { describeColon, montrealExtent } from "@uc/viz3d";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -110,6 +110,7 @@ export function Simulator() {
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
       <div className="min-w-0 space-y-6">
         <section aria-label="3D colon" className="panel">
+          <p className="sr-only">{describeColon(now.extent, now.inflammation)}</p>
           <div className="relative h-[26rem] sm:h-[34rem]">
             <SceneBoundary>
               <ColonScene extent={now.extent} inflammation={now.inflammation} onSegment={setSegment} />

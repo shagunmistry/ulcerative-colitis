@@ -146,6 +146,7 @@ function Frame() {
 
 export default function ColonScene(props: SceneProps) {
   const [lost, setLost] = useState(false);
+  const [reducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   if (lost) return <p>The 3D view stopped. Reload the page to restart it.</p>;
   return (
     <Canvas
@@ -162,7 +163,7 @@ export default function ColonScene(props: SceneProps) {
         <Colon {...props} />
       </group>
       <Frame />
-      <OrbitControls enableZoom={false} enablePan={false} minPolarAngle={0.6} maxPolarAngle={2.5} />
+      <OrbitControls enableDamping={!reducedMotion} enableZoom={false} enablePan={false} minPolarAngle={0.6} maxPolarAngle={2.5} />
     </Canvas>
   );
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { involvement, montrealExtent, mucosaState, segmentAt, tissueColor } from "../src/anatomy";
+import { describeColon, involvement, montrealExtent, mucosaState, segmentAt, tissueColor } from "../src/anatomy";
 
 describe("segmentAt", () => {
   it("runs from rectum to cecum", () => {
@@ -58,5 +58,23 @@ describe("mucosaState", () => {
     expect(s.gaps).toBeGreaterThan(0);
     expect(s.bacteriaInside).toBeGreaterThan(0);
     expect(s.immuneCells).toBeGreaterThan(20);
+  });
+});
+
+describe("describeColon", () => {
+  it("says in words that a quiet colon is quiet", () => {
+    expect(describeColon(0.4, 0.01)).toBe("Simulated colon with no active inflammation. Every part is drawn pink and smooth.");
+  });
+
+  it("names the extent, the parts involved and the level", () => {
+    expect(describeColon(0.4, 0.6)).toBe(
+      "Simulated colon, E2, left-sided colitis. Inflammation 60 out of 100, drawn red from the rectum up into the descending colon. The rest is drawn healthy.",
+    );
+  });
+
+  it("speaks of the rectum alone and of the whole colon", () => {
+    expect(describeColon(0.05, 0.5)).toContain("in the rectum.");
+    expect(describeColon(1, 0.9)).toContain("from the rectum up into the cecum.");
+    expect(describeColon(1, 0.9)).not.toContain("The rest");
   });
 });

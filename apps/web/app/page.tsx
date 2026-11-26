@@ -5,7 +5,7 @@ import { LandingPreview } from "@/components/LandingPreview";
 import { TrackedDatasetLink } from "@/components/TrackedDatasetLink";
 import { REPO_URL } from "@/lib";
 
-const inline = "text-[var(--source)] underline-offset-4 hover:underline";
+const inline = "text-[var(--source)] underline underline-offset-4";
 
 function Path({ title, text, children }: { title: string; text: string; children: React.ReactNode }) {
   return (

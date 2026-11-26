@@ -90,9 +90,9 @@ export function TopicList({ topics }: { topics: TopicData[] }) {
   );
 }
 
-export function Contents({ topics }: { topics: TopicData[] }) {
+export function Contents({ topics, label = "On this page" }: { topics: TopicData[]; label?: string }) {
   return (
-    <nav aria-label="On this page" className="flex flex-wrap gap-x-6 gap-y-1">
+    <nav aria-label={label} className="flex flex-wrap gap-x-6 gap-y-1">
       {topics.map((t) => (
         <a key={t.id} href={`#${t.id}`} className="slug py-1 text-[var(--ink-soft)] hover:text-[var(--source)]">
           {t.title}

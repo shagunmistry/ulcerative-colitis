@@ -94,3 +94,15 @@ export function mucosaState(v: { barrier: number; microbes: number; inflammation
     immuneCells: DRAWING.restingImmuneCells + Math.round(clamp(v.inflammation) * DRAWING.extraImmuneCells),
   };
 }
+
+/** The 3D picture in words, for people who cannot see it. */
+export function describeColon(extent: number, inflammation: number): string {
+  if (inflammation < DRAWING.quietBelow) {
+    return "Simulated colon with no active inflammation. Every part is drawn pink and smooth.";
+  }
+  const reach = Math.max(extent, DRAWING.minReach);
+  const top = segmentAt(reach);
+  const where = top === SEGMENTS[0] ? "in the rectum" : `from the rectum up into the ${top.name.toLowerCase()}`;
+  const rest = top === SEGMENTS[SEGMENTS.length - 1] ? "" : " The rest is drawn healthy.";
+  return `Simulated colon, ${montrealExtent(extent, inflammation)}. Inflammation ${Math.round(clamp(inflammation) * 100)} out of 100, drawn red ${where}.${rest}`;
+}
