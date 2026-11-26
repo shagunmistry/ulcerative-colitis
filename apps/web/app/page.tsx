@@ -2,6 +2,7 @@ import { DATASETS, LAST_CHECKED, reviewStatement } from "@uc/evidence";
 import Link from "next/link";
 import { External } from "@/components/External";
 import { LandingPreview } from "@/components/LandingPreview";
+import { TrackedDatasetLink } from "@/components/TrackedDatasetLink";
 import { REPO_URL } from "@/lib";
 
 const inline = "text-[var(--source)] underline-offset-4 hover:underline";
@@ -71,7 +72,9 @@ export default function Home() {
           </li>
           {DATASETS.map((d) => (
             <li key={d.id}>
-              <External href={d.url}>{d.title}</External>
+              <TrackedDatasetLink id={d.id} href={d.url}>
+                {d.title}
+              </TrackedDatasetLink>
             </li>
           ))}
         </Path>

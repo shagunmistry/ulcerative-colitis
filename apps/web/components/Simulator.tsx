@@ -5,6 +5,7 @@ import { montrealExtent } from "@uc/viz3d";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { events, once } from "@/analytics";
 import { Mucosa } from "./Mucosa";
 import { SceneBoundary } from "./SceneBoundary";
 import { Timeline } from "./Timeline";
@@ -55,6 +56,8 @@ export function Simulator() {
   const [day, setDay] = useState(START_DAY);
   const [playing, setPlaying] = useState(false);
   const [segment, setSegment] = useState<string | null>(null);
+  // Counted once per visit, when someone first runs or changes the starting scenario.
+  const [countRun] = useState(() => once(() => events.simulatorRun("default")));
 
   const days = DEFAULT_SCENARIO.days;
   const result = useMemo(
@@ -71,6 +74,14 @@ export function Simulator() {
   useEffect(() => {
     if (day >= days) setPlaying(false);
   }, [day, days]);
+
+  /** Passes a control's new value on, and counts the run. */
+  const run =
+    <T,>(set: (value: T) => void) =>
+    (value: T) => {
+      countRun();
+      set(value);
+    };
 
   const update = (id: TherapyId, patch: Partial<Treatment>) =>
     setTreatments((list) => list.map((t) => (t.id === id ? { ...t, ...patch } : t)));
@@ -118,6 +129,7 @@ export function Simulator() {
             <button
               className="button w-20"
               onClick={() => {
+                countRun();
                 if (!playing && day >= days) setDay(0);
                 setPlaying(!playing);
               }}
@@ -172,7 +184,7 @@ export function Simulator() {
             step={0.05}
             value={susceptibility}
             display={percent(susceptibility)}
-            onChange={setSusceptibility}
+            onChange={run(setSusceptibility)}
           />
           <Slider
             label="Trigger strength (infection, antibiotics)"
@@ -181,7 +193,7 @@ export function Simulator() {
             step={0.05}
             value={triggerSize}
             display={percent(triggerSize)}
-            onChange={setTriggerSize}
+            onChange={run(setTriggerSize)}
           />
           <Slider
             label="Trigger starts"
@@ -190,7 +202,7 @@ export function Simulator() {
             step={1}
             value={triggerDay}
             display={`day ${triggerDay}`}
-            onChange={setTriggerDay}
+            onChange={run(setTriggerDay)}
           />
           <p className="text-sm text-[var(--ink-soft)]">
             Try low susceptibility: the same trigger flares, then settles.
@@ -215,7 +227,10 @@ export function Simulator() {
                       type="checkbox"
                       className="mt-1.5"
                       checked={!!active}
-                      onChange={(e) => toggle(therapy.id, e.target.checked)}
+                      onChange={(e) => {
+                        countRun();
+                        toggle(therapy.id, e.target.checked);
+                      }}
                     />
                     <span>
                       <span className="font-medium">{therapy.name}</span>
@@ -232,7 +247,7 @@ export function Simulator() {
                         step={0.05}
                         value={active.strength}
                         display={percent(active.strength)}
-                        onChange={(strength) => update(therapy.id, { strength })}
+                        onChange={run((strength: number) => update(therapy.id, { strength }))}
                       />
                       <Slider
                         label="Starts"
@@ -241,12 +256,12 @@ export function Simulator() {
                         step={1}
                         value={active.startDay}
                         display={`day ${active.startDay}`}
-                        onChange={(startDay) =>
+                        onChange={run((startDay: number) =>
                           update(therapy.id, {
                             startDay,
                             stopDay: active.stopDay === undefined ? undefined : Math.max(startDay, active.stopDay),
-                          })
-                        }
+                          }),
+                        )}
                       />
                       <Slider
                         label="Stops"
@@ -255,7 +270,9 @@ export function Simulator() {
                         step={1}
                         value={active.stopDay ?? days}
                         display={active.stopDay === undefined ? "not stopped" : `day ${active.stopDay}`}
-                        onChange={(stopDay) => update(therapy.id, { stopDay: stopDay >= days ? undefined : stopDay })}
+                        onChange={run((stopDay: number) =>
+                          update(therapy.id, { stopDay: stopDay >= days ? undefined : stopDay }),
+                        )}
                       />
                     </div>
                   )}

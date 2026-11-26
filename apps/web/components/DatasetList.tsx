@@ -12,6 +12,7 @@ import {
 } from "@uc/evidence";
 import { useState } from "react";
 import { External } from "./External";
+import { TrackedDatasetLink } from "./TrackedDatasetLink";
 
 const TYPES: Record<DataType, string> = {
   images: "Images",
@@ -90,14 +91,14 @@ function CopyButton({ text, name }: { text: string; name: string }) {
   );
 }
 
-function CopyItem({ copy }: { copy: Copy }) {
+function CopyItem({ dataset, copy }: { dataset: string; copy: Copy }) {
   const snippet = loadSnippet(copy);
   return (
     <li className="min-w-0">
       <p className="text-sm">
-        <External href={copyUrl(copy)}>
+        <TrackedDatasetLink id={dataset} href={copyUrl(copy)}>
           {copy.host}: {copy.id}
-        </External>
+        </TrackedDatasetLink>
       </p>
       <p className="mt-1 text-sm">
         <span className={copy.original ? "text-[var(--source)]" : "text-[var(--signal)]"}>
@@ -149,9 +150,9 @@ function Card({ dataset }: { dataset: Dataset }) {
       </dl>
       <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm">
         <li>
-          <External href={dataset.url}>
+          <TrackedDatasetLink id={dataset.id} href={dataset.url}>
             Dataset page<span className="sr-only">: {dataset.title}</span>
-          </External>
+          </TrackedDatasetLink>
         </li>
         <li>
           {dataset.termsUrl ? (
@@ -171,7 +172,7 @@ function Card({ dataset }: { dataset: Dataset }) {
           </p>
           <ul className="mt-3 space-y-5">
             {dataset.copies.map((copy) => (
-              <CopyItem key={copyUrl(copy)} copy={copy} />
+              <CopyItem key={copyUrl(copy)} dataset={dataset.id} copy={copy} />
             ))}
           </ul>
         </div>

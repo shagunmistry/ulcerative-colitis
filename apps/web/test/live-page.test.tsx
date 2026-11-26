@@ -82,7 +82,7 @@ describe("data navigation", () => {
 
   it("is explained on the privacy page", () => {
     const html = text(render(<Privacy />));
-    for (const words of ["Live search", "IP address", "US National Library of Medicine", "Hugging Face", "2026-11-25"])
+    for (const words of ["Live search", "IP address", "US National Library of Medicine", "Hugging Face", "2026-11-26"])
       expect(html).toContain(words);
     expect(html).not.toContain("no forms that send data");
     // The links offered after an empty or failed search carry the term.

@@ -1,5 +1,7 @@
 import Link from "next/link";
+import stats from "@/data/stats.json";
 import { REPO_URL } from "@/lib";
+import { hasStats } from "@/stats";
 
 const link = "hover:text-[var(--source)] underline underline-offset-4";
 
@@ -25,6 +27,13 @@ export function Footer() {
               Clinical review
             </Link>
           </li>
+          {hasStats(stats) && (
+            <li>
+              <Link href="/stats" className={link}>
+                Numbers
+              </Link>
+            </li>
+          )}
           <li>
             <Link href="/disclaimer" className={link}>
               Disclaimer
