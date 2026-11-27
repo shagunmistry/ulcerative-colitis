@@ -24,6 +24,6 @@ export const PAGES: ContentPage[] = [
   { path: "/treatments", slug: "treatments", title: "Medicines", checkedOn: LAST_CHECKED, review: unreviewed() },
   { path: "/treatments/other", slug: "other-approaches", title: "Supplements, microbes and diet", checkedOn: LAST_CHECKED, review: unreviewed() },
   { path: "/simulator", slug: "simulator", title: "Simulator", checkedOn: LAST_CHECKED, review: unreviewed() },
-  { path: "/simulator/model", slug: "model-card", title: "Simulator model card", checkedOn: "2026-11-26", review: unreviewed() },
+  { path: "/simulator/model", slug: "model-card", title: "Simulator model card", checkedOn: "2026-11-27", review: unreviewed() },
   { path: "/data", slug: "data", title: "Data library", checkedOn: "2026-11-25", review: unreviewed() },
 ];

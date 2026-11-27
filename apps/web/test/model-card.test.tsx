@@ -35,10 +35,19 @@ const parameters: [string, number | string][] = [
 ];
 
 describe("model card", () => {
-  it.each(parameters)("lists %s with its value and a source or a to-do", (name, value) => {
+  it.each(parameters)("lists %s with its value and where it came from", (name, value) => {
     const cells = row(name);
     expect(cells).toContain(String(value));
-    expect(cells).toMatch(/TODO\(owner\): source|href=/);
+    expect(cells).toMatch(/Chosen by hand|href=/);
+  });
+
+  it("says once, plainly, that no number comes from a study, and leaves no to-dos", () => {
+    expect(html).toContain("None of the numbers on this page was taken from a published study or fitted to data.");
+    expect(html).not.toContain("TODO(owner)");
+  });
+
+  it("cites the extent classification it names", () => {
+    expect(html).toContain("https://pubmed.ncbi.nlm.nih.gov/16698746/");
   });
 
   it("covers state, limits, why it cannot predict, and its history", () => {

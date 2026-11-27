@@ -2,6 +2,17 @@
 
 What changed on the [live site](https://ulcerative-colitis.vercel.app), newest first.
 
+## 2026-11-27
+
+### Added
+
+- The builder's own story on the [About](/about) page
+
+### Changed
+
+- The [model card](/simulator/model) now says plainly that its numbers were chosen by hand,
+  and cites the classification used to name disease extent
+
 ## 2026-11-26
 
 ### Added

@@ -91,6 +91,7 @@ export const SOURCES: Source[] = [
   s("curcumin-induction-2015", "25724700", 2015, "Clinical Gastroenterology and Hepatology", "Curcumin in Combination With Mesalamine Induces Remission in Patients With Mild-to-Moderate Ulcerative Colitis"),
   s("cochrane-probiotics-induction", "32128795", 2020, "Cochrane Database of Systematic Reviews", "Probiotics for induction of remission in ulcerative colitis"),
   s("cochrane-probiotics-maintenance", "32128794", 2020, "Cochrane Database of Systematic Reviews", "Probiotics for maintenance of remission in ulcerative colitis"),
+  s("montreal-classification", "16698746", 2006, "Gut", "The Montreal classification of inflammatory bowel disease: controversies, consensus, and implications"),
   s("nissle-2004", "15479682", 2004, "Gut", "Maintaining remission of ulcerative colitis with the probiotic Escherichia coli Nissle 1917 is as effective as with standard mesalazine"),
   s("fmt-paramsothy", "28214091", 2017, "The Lancet", "Multidonor intensive faecal microbiota transplantation for active ulcerative colitis"),
   s("diet-meta-2026", "40797000", 2026, "Digestive Diseases and Sciences", "Efficacy of Whole-Food Based Anti-inflammatory Dietary Interventions in the Management of Ulcerative Colitis"),

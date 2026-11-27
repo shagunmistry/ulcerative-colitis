@@ -9,7 +9,6 @@ import {
 } from "@uc/sim";
 import { DRAWING, SEGMENTS } from "@uc/viz3d";
 import { Cite, Page } from "@/components/Page";
-import { Todo } from "@/components/Todo";
 import { pageMetadata } from "@/meta";
 import { SIM_UI } from "@/simulator-settings";
 
@@ -50,12 +49,6 @@ interface Param {
   source?: React.ReactNode;
 }
 
-const byHand = (
-  <>
-    Chosen by hand. <Todo>TODO(owner): source</Todo>
-  </>
-);
-
 function Params({ caption, rows }: { caption: string; rows: Param[] }) {
   return (
     <div tabIndex={0} role="region" aria-label={caption} className="mt-4 overflow-x-auto">
@@ -78,7 +71,7 @@ function Params({ caption, rows }: { caption: string; rows: Param[] }) {
               </th>
               <td className="timecode py-2 pr-4">{p.value}</td>
               <td className="py-2 pr-4">{p.meaning}</td>
-              <td className="py-2">{p.source ?? byHand}</td>
+              <td className="py-2">{p.source ?? "Chosen by hand"}</td>
             </tr>
           ))}
         </tbody>
@@ -129,6 +122,12 @@ export default function Model() {
         fitted to patient data or validated, so it cannot predict a flare, a response or an outcome.
       </p>
 
+      <p className="mt-4 max-w-prose">
+        None of the numbers on this page was taken from a published study or fitted to data. &ldquo;Chosen by hand&rdquo;
+        means the value was picked while building the simulator so that it behaves in a recognisable way. Where papers are
+        cited, they support an idea or a name, not a value.
+      </p>
+
       <h2 className={h2}>What the model represents</h2>
       <p className={prose}>
         A qualitative story from the research literature: a weakened lining lets microbes reach the tissue, the immune
@@ -156,7 +155,7 @@ export default function Model() {
       </pre>
       <p className={prose}>
         Solved in fixed steps (Euler&apos;s method) with values held between 0 and 1. The loop term uses a power of 2,
-        chosen by hand to give a threshold-like response. <Todo>TODO(owner): source</Todo>
+        chosen by hand to give a threshold-like response.
       </p>
 
       <h2 className={h2}>Constants</h2>
@@ -218,6 +217,7 @@ export default function Model() {
         These change only what you see. Extent is named with the Montreal classes: E1 up to the end of the rectum, E2 up
         to the top of the descending colon, E3 beyond. The colon&apos;s shape, colours and cell positions are artistic.
       </p>
+      <Cite ids={["montreal-classification"]} />
       <Params
         caption="Drawing values"
         rows={Object.entries(DRAWING).map(([k, v]) => ({
