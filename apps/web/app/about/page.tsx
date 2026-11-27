@@ -48,9 +48,11 @@ export default function About() {
         </div>
 
         <h2 className={h2}>Why</h2>
-        <p className="mt-3">
-          <Todo>{OWNER.why}</Todo>
-        </p>
+        {OWNER.why.split("\n\n").map((paragraph) => (
+          <p key={paragraph} className="mt-3">
+            <Todo>{paragraph}</Todo>
+          </p>
+        ))}
 
         <h2 className={h2}>How this site is made</h2>
         <ul className="mt-3 list-disc space-y-2 pl-5">

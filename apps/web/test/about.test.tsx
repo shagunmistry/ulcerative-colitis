@@ -33,6 +33,13 @@ describe("about page", () => {
     expect(html).not.toMatch(/TODO\(owner\): (name|bio|photo|contact|GitHub|LinkedIn)/);
   });
 
+  it("tells the builder's reason, one paragraph at a time, with no to-dos left", () => {
+    const html = renderToStaticMarkup(<About />).replaceAll("&#x27;", "'");
+    expect(html).toMatch(/<p[^>]*>I was diagnosed with ulcerative colitis in 2022\.[^<]*<\/p><p/);
+    expect(html).toMatch(/<p[^>]*>I'm a patient and an engineer, not a clinician\.[^<]*<\/p>/);
+    expect(html).not.toContain("TODO(owner)");
+  });
+
   it("marks every detail that only the owner can supply", () => {
     for (const value of Object.values(OWNER)) {
       if (!isSet(value)) expect(renderToStaticMarkup(<About />)).toContain(value);
